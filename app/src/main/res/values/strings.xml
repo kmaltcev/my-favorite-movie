@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">My Favorite Movie</string>
+    <string name="app_name_subtitle">Under a palm</string>
+    <string name="delete_movie">delete movie</string>
+    <string name="change_name">change name</string>
+    <string name="select_poster">select poster</string>
+    <string name="move_to_good_movie">move to good movie</string>
+    <string name="empty_description">Empty description</string>
+    <string name="save">save</string>
+    <string name="favourite_movies">favourite movies</string>
+    <string name="need_to_watch_movies">need to watch movies</string>
+    <string name="search_movie">search movie</string>
+    <string name="link_movie">Link movie</string>
+    <string name="link_with">link with</string>
+    <string name="select_name">select name</string>
+</resources>

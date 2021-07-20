@@ -1,0 +1,76 @@
+package com.example.myfavoritemovie.app.dependency
+
+import com.example.myfavoritemovie.data.repository.MovieChangesRepositoryImpl
+import com.example.myfavoritemovie.data.repository.MoviesRepositoryImpl
+import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
+import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabaseImpl
+import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSourceImpl
+import com.example.myfavoritemovie.domain.usecase.movies.*
+
+class MoviesModule {
+    val addNeedToWatchMovieUseCase by lazy {
+        AddNeedToWatchMovieUseCase(
+            moviesRepository,
+            movieChangesRepository,
+            prepareMovieToAddUseCase
+        )
+    }
+    val addGoodMovieUseCase by lazy {
+        AddGoodMovieUseCase(
+            moviesRepository,
+            movieChangesRepository,
+            prepareMovieToAddUseCase
+        )
+    }
+    val updateMovieUseCase by lazy {
+        LinkMovieUseCase(
+            moviesRepository,
+            prepareSeriesToAddUseCase
+        )
+    }
+    val deleteMovieUseCase by lazy {
+        DeleteMovieUseCase(
+            moviesRepository,
+            movieChangesRepository
+        )
+    }
+    val moveToWatchMovieUseCase by lazy {
+        MoveToGoodMoviesUseCase(
+            moviesRepository,
+            movieChangesRepository
+        )
+    }
+    val changeMoviePosterUseCase by lazy {
+        ChangeMoviePosterUseCase(
+            moviesRepository
+        )
+    }
+
+    val changeMovieNameUseCase by lazy {
+        ChangeMovieNameUseCase(
+            moviesRepository
+        )
+    }
+
+    private val prepareMovieToAddUseCase by lazy {
+        PrepareMovieToAddUseCase(
+            prepareSeriesToAddUseCase
+        )
+    }
+
+    private val prepareSeriesToAddUseCase by lazy { PrepareSeriesToAddUseCase() }
+
+    val getChangedMovieUseCase by lazy {
+        GetChangedMovieUseCase(
+            movieChangesRepository
+        )
+    }
+
+    private val moviesRepository by lazy {
+        MoviesRepositoryImpl(firebaseRealtimeDatabase, firebaseStorageDataSource)
+    }
+
+    private val movieChangesRepository by lazy { MovieChangesRepositoryImpl() }
+    val firebaseRealtimeDatabase: FirebaseRealtimeDatabase by lazy { FirebaseRealtimeDatabaseImpl() }
+    private val firebaseStorageDataSource by lazy { FirebaseStorageDataSourceImpl() }
+}
