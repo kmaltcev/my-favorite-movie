@@ -1,9 +1,12 @@
 package com.example.myfavoritemovie.domain.repository
 
-import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
 
-interface MovieChangesRepository  {
-    val changedMovie: LiveData<ChangedMovie>
-    fun movieWasChanged(changedMovie: ChangedMovie)
+class MovieChangesRepository  {
+    val changedMovie = MutableLiveData<ChangedMovie>()
+
+    fun movieWasChanged(changedMovie: ChangedMovie) {
+        this.changedMovie.value = changedMovie
+    }
 }
