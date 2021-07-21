@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.domain.actions.movies.GetChangedMovieAction
-import com.example.myfavoritemovie.domain.actions.movies.LinkMovieUseCase
-import com.example.myfavoritemovie.domain.actions.search.SearchByMovieAction
+import com.example.myfavoritemovie.domain.usecase.movies.GetChangedMovieAction
+import com.example.myfavoritemovie.domain.usecase.movies.LinkMovieUseCase
+import com.example.myfavoritemovie.domain.usecase.search.SearchByMovieAction
 import com.example.myfavoritemovie.ui.ChangesMovieViewModel
 import com.example.myfavoritemovie.ui.ext.changeItem
 import kotlinx.coroutines.launch

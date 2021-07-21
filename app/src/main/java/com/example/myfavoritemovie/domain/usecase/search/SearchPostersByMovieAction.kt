@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.domain.actions.search
+package com.example.myfavoritemovie.domain.usecase.search
 
 import com.example.myfavoritemovie.domain.entity.Image
 import com.example.myfavoritemovie.domain.entity.Movie

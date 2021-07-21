@@ -47,7 +47,9 @@ class SearchFragment : Fragment() {
                 viewModel.search(query)
             }
 
-            inputLayoutSearch.setEndIconOnClickListener { onSearch() }
+            inputLayoutSearch.setEndIconOnClickListener {
+                onSearch()
+            }
             editSearch.setOnEditorActionListener { _, actionId, _ ->
                 return@setOnEditorActionListener when(actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {

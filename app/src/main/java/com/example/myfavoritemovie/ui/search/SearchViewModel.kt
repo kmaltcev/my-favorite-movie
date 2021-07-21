@@ -3,8 +3,8 @@ package com.example.myfavoritemovie.ui.search
 import androidx.lifecycle.*
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.domain.actions.movies.GetChangedMovieAction
-import com.example.myfavoritemovie.domain.actions.search.SearchMoviesAction
+import com.example.myfavoritemovie.domain.usecase.movies.GetChangedMovieAction
+import com.example.myfavoritemovie.domain.usecase.search.SearchMoviesAction
 import com.example.myfavoritemovie.ui.ChangesMovieViewModel
 import com.example.myfavoritemovie.ui.ext.changeItem
 import kotlinx.coroutines.launch
