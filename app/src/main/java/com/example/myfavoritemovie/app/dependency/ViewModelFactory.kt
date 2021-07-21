@@ -16,7 +16,7 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
 
     private val movieViewModel: MovieViewModel
         get() = MovieViewModel(
-            moviesModule.addGoodMovieAction,
+            moviesModule.addFavoriteMovieAction,
             moviesModule.addNeedToWatchMovieAction
         )
 

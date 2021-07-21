@@ -19,7 +19,7 @@ class LinkMovieUseCase(
         )
 
         if (updatedMovie.watchStatus == WatchStatus.WATCHED) {
-            moviesRepository.updateGoodMovie(updatedMovie)
+            moviesRepository.updateFavoriteMovie(updatedMovie)
         } else {
             moviesRepository.updateNeedToWatchMovie(updatedMovie)
         }

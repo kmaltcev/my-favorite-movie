@@ -9,7 +9,7 @@
         layout="@layout/screen_header"/>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/button_good_movies"
+        android:id="@+id/button_favorite_movies"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintVertical_chainStyle="packed"
@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toTopOf="@+id/button_search_movie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_good_movies" />
+        app:layout_constraintTop_toBottomOf="@+id/button_favorite_movies" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_search_movie"

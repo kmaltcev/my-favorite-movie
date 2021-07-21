@@ -176,20 +176,20 @@
             android:lines="1"
             android:text="@{movie.name}"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/button_move_to_good_movie"
+            app:layout_constraintBottom_toTopOf="@+id/button_move_to_favorite_movie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_poster"
             app:layout_constraintTop_toBottomOf="@id/text_original_name"
             tools:text="Just name of movie" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_move_to_good_movie"
+            android:id="@+id/button_move_to_favorite_movie"
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:onClick="@{() -> viewModel.moveToGoodMovies(movie)}"
-            android:text="@string/move_to_good_movie"
+            android:onClick="@{() -> viewModel.moveToFavoriteMovies(movie)}"
+            android:text="@string/move_to_favorite_movie"
             android:visibility="@{movie.watchStatus == WatchStatus.NOT_WATCHED ? View.VISIBLE : View.GONE}"
             app:icon="@drawable/ic_check"
             app:layout_constraintEnd_toEndOf="parent"
@@ -207,7 +207,7 @@
             app:icon="@drawable/ic_edit"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_move_to_good_movie" />
+            app:layout_constraintTop_toBottomOf="@id/button_move_to_favorite_movie" />
 
         <com.google.android.material.button.MaterialButton
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"

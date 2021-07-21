@@ -16,16 +16,16 @@ class MoviesRepositoryImpl(
     private val firebaseStorageDataSource: FirebaseStorageDataSource
 ) : MoviesRepository {
 
-    override suspend fun addGoodMovie(movie: Movie) {
-        putMovieUse(movie, firebaseRealtimeDatabase::putGoodMovie)
+    override suspend fun addFavoriteMovie(movie: Movie) {
+        putMovieUse(movie, firebaseRealtimeDatabase::putFavoriteMovie)
     }
 
     override suspend fun addNeedToWatchMovie(movie: Movie) {
         putMovieUse(movie, firebaseRealtimeDatabase::putNeedToWatchMovie)
     }
 
-    override suspend fun updateGoodMovie(updatedMovie: Movie) {
-        putMovieUse(updatedMovie, firebaseRealtimeDatabase::putGoodMovie)
+    override suspend fun updateFavoriteMovie(updatedMovie: Movie) {
+        putMovieUse(updatedMovie, firebaseRealtimeDatabase::putFavoriteMovie)
     }
 
     override suspend fun updateNeedToWatchMovie(updatedMovie: Movie) {
@@ -77,8 +77,8 @@ class MoviesRepositoryImpl(
     }
 
 
-    override suspend fun deleteGoodMovie(movie: Movie) {
-        firebaseRealtimeDatabase.removeGoodMovie(buildFirebaseMovieDto(movie))
+    override suspend fun deleteFavoriteMovie(movie: Movie) {
+        firebaseRealtimeDatabase.removeFavoriteMovie(buildFirebaseMovieDto(movie))
         deletePoster(movie)
     }
 

@@ -14,7 +14,7 @@ class DeleteMovieAction(
     suspend operator fun invoke(movie: Movie) {
 
         when (movie.watchStatus) {
-            WatchStatus.WATCHED -> moviesRepository.deleteGoodMovie(movie)
+            WatchStatus.WATCHED -> moviesRepository.deleteFavoriteMovie(movie)
             WatchStatus.NOT_WATCHED -> moviesRepository.deleteNeedToWatchMovie(movie)
             else -> return
         }

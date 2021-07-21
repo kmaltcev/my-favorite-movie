@@ -6,7 +6,7 @@ import com.example.myfavoritemovie.domain.entity.WatchStatus
 import com.example.myfavoritemovie.domain.repository.MovieChangesRepository
 import com.example.myfavoritemovie.domain.repository.MoviesRepository
 
-class MoveToGoodMoviesAction(
+class MoveToFavoriteMoviesAction(
     private val moviesRepository: MoviesRepository,
     private val movieChangesRepository: MovieChangesRepository
 ) {
@@ -17,7 +17,7 @@ class MoveToGoodMoviesAction(
             watchStatus = WatchStatus.WATCHED,
             dateAdded = generateDateAdded()
         )
-        moviesRepository.addGoodMovie(updatedMovie)
+        moviesRepository.addFavoriteMovie(updatedMovie)
         movieChangesRepository.movieWasChanged(ChangedMovie(movie, updatedMovie))
     }
 

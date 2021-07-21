@@ -17,14 +17,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.buttonGoodMovies.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_goodMoviesFragment)
+        binding.buttonFavoriteMovies.setOnClickListener {
+            findNavController().navigate(R.id.toFavoriteMoviesFragment)
         }
         binding.buttonNeedToWatchMovies.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_needToWatchMoviesFragment)
+            findNavController().navigate(R.id.toNeedToWatchMoviesFragment)
         }
         binding.buttonSearchMovie.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            findNavController().navigate(R.id.toSearchFragment)
         }
         return binding.root
     }

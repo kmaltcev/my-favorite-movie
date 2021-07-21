@@ -9,7 +9,7 @@ class ChangeMovieNameAction(private val moviesRepository: MoviesRepository) {
         val updatedMovie = movie.copy(name = name)
 
         if (updatedMovie.watchStatus == WatchStatus.WATCHED) {
-            moviesRepository.updateGoodMovie(updatedMovie)
+            moviesRepository.updateFavoriteMovie(updatedMovie)
         } else {
             moviesRepository.updateNeedToWatchMovie(updatedMovie)
         }

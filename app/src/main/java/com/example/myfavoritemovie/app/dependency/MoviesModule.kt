@@ -3,8 +3,7 @@ package com.example.myfavoritemovie.app.dependency
 import com.example.myfavoritemovie.data.repository.MovieChangesRepositoryImpl
 import com.example.myfavoritemovie.data.repository.MoviesRepositoryImpl
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
-import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabaseImpl
-import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSourceImpl
+import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSource
 import com.example.myfavoritemovie.domain.actions.movies.*
 
 class MoviesModule {
@@ -15,8 +14,8 @@ class MoviesModule {
             prepareMovieToAddAction
         )
     }
-    val addGoodMovieAction by lazy {
-        AddGoodMovieAction(
+    val addFavoriteMovieAction by lazy {
+        AddFavoriteMovieAction(
             moviesRepository,
             movieChangesRepository,
             prepareMovieToAddAction
@@ -35,7 +34,7 @@ class MoviesModule {
         )
     }
     val moveToWatchMovieAction by lazy {
-        MoveToGoodMoviesAction(
+        MoveToFavoriteMoviesAction(
             moviesRepository,
             movieChangesRepository
         )
@@ -71,6 +70,6 @@ class MoviesModule {
     }
 
     private val movieChangesRepository by lazy { MovieChangesRepositoryImpl() }
-    val firebaseRealtimeDatabase: FirebaseRealtimeDatabase by lazy { FirebaseRealtimeDatabaseImpl() }
-    private val firebaseStorageDataSource by lazy { FirebaseStorageDataSourceImpl() }
+    val firebaseRealtimeDatabase: FirebaseRealtimeDatabase by lazy { FirebaseRealtimeDatabase() }
+    private val firebaseStorageDataSource by lazy { FirebaseStorageDataSource() }
 }

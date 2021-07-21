@@ -6,14 +6,14 @@ import com.example.myfavoritemovie.domain.entity.WatchStatus
 import com.example.myfavoritemovie.domain.repository.MovieChangesRepository
 import com.example.myfavoritemovie.domain.repository.MoviesRepository
 
-class AddGoodMovieAction(
+class AddFavoriteMovieAction(
     private val moviesRepository: MoviesRepository,
     private val movieChangesRepository: MovieChangesRepository,
     private val prepareMovieToAddAction: PrepareMovieToAddAction
 ) {
     suspend operator fun invoke(movie: Movie) {
         val preparedMovie = prepareMovieToAddAction(movie, WatchStatus.WATCHED)
-        moviesRepository.addGoodMovie(preparedMovie)
+        moviesRepository.addFavoriteMovie(preparedMovie)
         movieChangesRepository.movieWasChanged(ChangedMovie(movie, preparedMovie))
     }
 }

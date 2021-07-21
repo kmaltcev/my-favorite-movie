@@ -4,7 +4,7 @@
     <string name="delete_movie">delete movie</string>
     <string name="change_name">change name</string>
     <string name="select_poster">select poster</string>
-    <string name="move_to_good_movie">move to good movie</string>
+    <string name="move_to_favorite_movie">move to favorite movie</string>
     <string name="empty_description">Empty description</string>
     <string name="save">save</string>
     <string name="favourite_movies">favourite movies</string>

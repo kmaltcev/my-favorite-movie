@@ -20,7 +20,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="sans-serif-light"
-        tools:text="Good movies"
+        tools:text="Favorite movies"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

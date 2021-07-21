@@ -10,22 +10,22 @@
         android:label="HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_needToWatchMoviesFragment"
+            android:id="@+id/toNeedToWatchMoviesFragment"
             app:destination="@id/needToWatchMoviesFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_goodMoviesFragment"
-            app:destination="@id/goodMoviesFragment" />
+            android:id="@+id/toFavoriteMoviesFragment"
+            app:destination="@id/favoriteMoviesFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
+            android:id="@+id/toSearchFragment"
             app:destination="@id/searchFragment" />
     </fragment>
     <fragment
-        android:id="@+id/goodMoviesFragment"
-        android:name="com.example.myfavoritemovie.ui.movies.added.GoodMoviesFragment"
+        android:id="@+id/favoriteMoviesFragment"
+        android:name="com.example.myfavoritemovie.ui.movies.added.FavoriteMoviesFragment"
         tools:layout="@layout/fragment_movies"
-        android:label="GoodMoviesFragment" >
+        android:label="FavoriteMoviesFragment">
         <action
-            android:id="@+id/action_goodMoviesFragment_to_linkMovieFragment"
+            android:id="@+id/toLinkMovieFragment"
             app:destination="@id/linkMovieFragment" />
     </fragment>
     <fragment
@@ -34,7 +34,7 @@
         tools:layout="@layout/fragment_movies"
         android:label="NeedToWatchMoviesFragment" >
         <action
-            android:id="@+id/action_needToWatchMoviesFragment_to_linkMovieFragment"
+            android:id="@+id/toLinkMovieFragment2"
             app:destination="@id/linkMovieFragment" />
     </fragment>
     <fragment
