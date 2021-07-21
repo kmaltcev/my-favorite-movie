@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.example.myfavoritemovie.R
-import com.example.myfavoritemovie.app.dependency.NetworkChangeReceiver
+import com.example.myfavoritemovie.app.NetworkChangeReceiver
 import com.example.myfavoritemovie.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
