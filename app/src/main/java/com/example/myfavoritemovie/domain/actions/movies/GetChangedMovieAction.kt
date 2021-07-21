@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.domain.usecase.movies
+package com.example.myfavoritemovie.domain.actions.movies
 
 import androidx.lifecycle.LiveData
 import com.example.myfavoritemovie.domain.entity.ChangedMovie

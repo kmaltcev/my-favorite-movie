@@ -5,7 +5,7 @@ import com.example.myfavoritemovie.data.repository.MoviesRepositoryImpl
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabaseImpl
 import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSourceImpl
-import com.example.myfavoritemovie.domain.usecase.movies.*
+import com.example.myfavoritemovie.domain.actions.movies.*
 
 class MoviesModule {
     val addNeedToWatchMovieAction by lazy {

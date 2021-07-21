@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.domain.usecase.movies
+package com.example.myfavoritemovie.domain.actions.movies
 
 import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.entity.Series
