@@ -61,5 +61,4 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
             else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }
     } as T
-
 }

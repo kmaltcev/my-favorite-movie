@@ -27,7 +27,6 @@ class MovieDialogViewModel(
     private val _selectedMovie = MutableLiveData<Movie>()
     val selectedMovie: LiveData<Movie> = _selectedMovie
 
-
     private val _posters = MutableLiveData<Event<List<Image>>>()
     val posters: LiveData<Event<List<Image>>> by lazy { _posters }
 

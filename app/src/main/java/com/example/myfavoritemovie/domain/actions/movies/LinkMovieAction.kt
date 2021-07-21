@@ -4,16 +4,16 @@ import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.entity.WatchStatus
 import com.example.myfavoritemovie.domain.repository.MoviesRepository
 
-class LinkMovieUseCase(
+class LinkMovieAction(
     private val moviesRepository: MoviesRepository,
-    private val prepareSeriesToAddUseCase: PrepareSeriesToAddUseCase
+    private val prepareSeriesToAddAction: PrepareSeriesToAddAction
 ) {
     suspend operator fun invoke(oldMovie: Movie, newMovie: Movie) {
         val updatedMovie = oldMovie.copy(
             originalName = newMovie.originalName,
             poster = newMovie.poster,
             externalId = newMovie.externalId,
-            relatedSeries = newMovie.relatedSeries?.let { prepareSeriesToAddUseCase(it) },
+            relatedSeries = newMovie.relatedSeries?.let { prepareSeriesToAddAction(it) },
             episodeCount = newMovie.episodeCount,
             seasonNumber = newMovie.seasonNumber
         )

@@ -9,7 +9,6 @@ import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.entity.Series
 import com.example.myfavoritemovie.domain.entity.UriImage
 
-
 fun MediaDto.toMovie() = Movie(
     name,
     originalName,

@@ -22,7 +22,7 @@ class MoviesModule {
         )
     }
     val updateMovieUseCase by lazy {
-        LinkMovieUseCase(
+        LinkMovieAction(
             moviesRepository,
             prepareSeriesToAddAction
         )
@@ -51,7 +51,7 @@ class MoviesModule {
         PrepareMovieToAddAction(prepareSeriesToAddAction)
     }
 
-    private val prepareSeriesToAddAction by lazy { PrepareSeriesToAddUseCase() }
+    private val prepareSeriesToAddAction by lazy { PrepareSeriesToAddAction() }
 
     val getChangedMovieAction by lazy {
         GetChangedMovieAction(movieChangesRepository)

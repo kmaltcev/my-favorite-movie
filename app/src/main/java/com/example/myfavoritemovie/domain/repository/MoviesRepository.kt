@@ -41,7 +41,6 @@ class MoviesRepository(
                     movie.poster.reference
                 )
             }
-
             StorageReferenceImage(posterReference)
         } else {
             movie.poster

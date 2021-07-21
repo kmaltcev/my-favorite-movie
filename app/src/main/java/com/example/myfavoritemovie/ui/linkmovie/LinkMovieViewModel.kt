@@ -6,7 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
 import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.actions.movies.GetChangedMovieAction
-import com.example.myfavoritemovie.domain.actions.movies.LinkMovieUseCase
+import com.example.myfavoritemovie.domain.actions.movies.LinkMovieAction
 import com.example.myfavoritemovie.domain.actions.search.SearchByMovieAction
 import com.example.myfavoritemovie.ui.ChangesMovieViewModel
 import com.example.myfavoritemovie.ui.ext.changeItem
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 class LinkMovieViewModel(
     private val searchByMovieAction: SearchByMovieAction,
-    private val linkMovieUseCase: LinkMovieUseCase,
+    private val linkMovieAction: LinkMovieAction,
     getChangedMovieAction: GetChangedMovieAction
 ): ChangesMovieViewModel(getChangedMovieAction) {
 
@@ -32,7 +32,7 @@ class LinkMovieViewModel(
 
     fun linkWithMovie(selectedMovie: Movie) = viewModelScope.launch {
         originalMovie.value?.let {
-            linkMovieUseCase(it, selectedMovie)
+            linkMovieAction(it, selectedMovie)
         }
     }
 

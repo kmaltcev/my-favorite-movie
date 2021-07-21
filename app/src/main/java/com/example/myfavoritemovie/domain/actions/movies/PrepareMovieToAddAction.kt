@@ -6,11 +6,11 @@ import com.example.myfavoritemovie.domain.entity.WatchStatus
 import java.util.*
 
 class PrepareMovieToAddAction(
-    private val prepareSeriesToAddUseCase: PrepareSeriesToAddUseCase
+    private val prepareSeriesToAddAction: PrepareSeriesToAddAction
 ) {
 
     operator fun invoke(movie: Movie, watchStatus: WatchStatus): Movie {
-        val preparedRelatedSeries = movie.relatedSeries?.let { prepareSeriesToAddUseCase(it) }
+        val preparedRelatedSeries = movie.relatedSeries?.let { prepareSeriesToAddAction(it) }
         return prepareMovie(movie, watchStatus, preparedRelatedSeries)
     }
 

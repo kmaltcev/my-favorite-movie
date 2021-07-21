@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/favoriteMoviesFragment">
+
+    <fragment
+        android:id="@+id/favoriteMoviesFragment"
+        android:name="com.example.myfavoritemovie.ui.movies.added.FavoriteMoviesFragment"
+        android:label="FavoriteMoviesFragment"
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_to_LinkMovieFragment"
+            app:destination="@id/linkMovieFragment" />
+        <action
+            android:id="@+id/action_favorite_to_needtowatch"
+            app:destination="@id/needToWatchMoviesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/needToWatchMoviesFragment"
+        android:name="com.example.myfavoritemovie.ui.movies.added.NeedToWatchMoviesFragment"
+        android:label="NeedToWatchMoviesFragment"
+        tools:layout="@layout/fragment_movies">
+        <action
+            android:id="@+id/action_ntw_to_LinkMovieFragment"
+            app:destination="@id/linkMovieFragment" />
+        <action
+            android:id="@+id/action_needToWatchFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.myfavoritemovie.ui.search.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/fragment_search"></fragment>
+    <fragment
+        android:id="@+id/linkMovieFragment"
+        android:name="com.example.myfavoritemovie.ui.linkmovie.LinkMovieFragment"
+        android:label="LinkMovieFragment" />
+</navigation>

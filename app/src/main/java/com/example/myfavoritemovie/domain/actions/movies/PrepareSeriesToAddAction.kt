@@ -3,7 +3,7 @@ package com.example.myfavoritemovie.domain.actions.movies
 import com.example.myfavoritemovie.domain.entity.Series
 import java.util.*
 
-class PrepareSeriesToAddUseCase {
+class PrepareSeriesToAddAction {
 
     operator fun invoke(series: Series): Series {
         return prepareSeries(series)

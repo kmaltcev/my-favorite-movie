@@ -8,18 +8,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import com.example.myfavoritemovie.R
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.chip.Chip
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.databinding.DialogMovieBinding
 import com.example.myfavoritemovie.ui.EventObserver
 import com.example.myfavoritemovie.ui.ext.hide
 import com.example.myfavoritemovie.ui.ext.show
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.google.android.material.chip.Chip
 
 class MovieDialog : BottomSheetDialogFragment() {
 
-    private val viewModel by activityViewModels<MovieDialogViewModel> { ViewModelFactory(requireContext()) }
+    private val viewModel by activityViewModels<MovieDialogViewModel> {
+        ViewModelFactory(
+            requireContext()
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -59,7 +63,6 @@ class MovieDialog : BottomSheetDialogFragment() {
                     addView(buildNameChip(name))
                 }
             }
-
 
             binding.headerMarker.show()
             TransitionManager.beginDelayedTransition(requireView().parent as ViewGroup)

@@ -21,12 +21,11 @@ open class MoviesAdapter(
 
     private class MovieDiffCallback : DiffUtil.ItemCallback<Movie>() {
         override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
-            return oldItem.internalId == newItem.internalId || oldItem.externalId == newItem.externalId
+            return oldItem.externalId == newItem.externalId
         }
 
         override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
             return oldItem == newItem
         }
-
     }
 }

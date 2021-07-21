@@ -13,4 +13,5 @@
     <string name="link_movie">Link movie</string>
     <string name="link_with">link with</string>
     <string name="select_name">select name</string>
+    <string name="exit">exit</string>
 </resources>
