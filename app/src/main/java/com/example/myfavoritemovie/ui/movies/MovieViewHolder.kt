@@ -14,6 +14,7 @@ class MovieViewHolder private constructor(
     fun bind(movie: Movie, viewModel: MovieViewModel) {
         binding.movie = movie
         binding.viewModel = viewModel
+
     }
 
     companion object {
