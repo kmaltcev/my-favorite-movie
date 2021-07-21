@@ -5,63 +5,63 @@ import com.example.myfavoritemovie.data.repository.MoviesRepositoryImpl
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabaseImpl
 import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSourceImpl
-import com.example.myfavoritemovie.domain.usecase.movies.*
+import com.example.myfavoritemovie.domain.actions.movies.*
 
 class MoviesModule {
-    val addNeedToWatchMovieUseCase by lazy {
-        AddNeedToWatchMovieUseCase(
+    val addNeedToWatchMovieAction by lazy {
+        AddNeedToWatchMovieAction(
             moviesRepository,
             movieChangesRepository,
-            prepareMovieToAddUseCase
+            prepareMovieToAddAction
         )
     }
-    val addGoodMovieUseCase by lazy {
-        AddGoodMovieUseCase(
+    val addGoodMovieAction by lazy {
+        AddGoodMovieAction(
             moviesRepository,
             movieChangesRepository,
-            prepareMovieToAddUseCase
+            prepareMovieToAddAction
         )
     }
     val updateMovieUseCase by lazy {
         LinkMovieUseCase(
             moviesRepository,
-            prepareSeriesToAddUseCase
+            prepareSeriesToAddAction
         )
     }
-    val deleteMovieUseCase by lazy {
-        DeleteMovieUseCase(
+    val deleteMovieAction by lazy {
+        DeleteMovieAction(
             moviesRepository,
             movieChangesRepository
         )
     }
-    val moveToWatchMovieUseCase by lazy {
-        MoveToGoodMoviesUseCase(
+    val moveToWatchMovieAction by lazy {
+        MoveToGoodMoviesAction(
             moviesRepository,
             movieChangesRepository
         )
     }
-    val changeMoviePosterUseCase by lazy {
-        ChangeMoviePosterUseCase(
+    val changeMoviePosterAction by lazy {
+        ChangeMoviePosterAction(
             moviesRepository
         )
     }
 
-    val changeMovieNameUseCase by lazy {
-        ChangeMovieNameUseCase(
+    val changeMovieNameAction by lazy {
+        ChangeMovieNameAction(
             moviesRepository
         )
     }
 
-    private val prepareMovieToAddUseCase by lazy {
-        PrepareMovieToAddUseCase(
-            prepareSeriesToAddUseCase
+    private val prepareMovieToAddAction by lazy {
+        PrepareMovieToAddAction(
+            prepareSeriesToAddAction
         )
     }
 
-    private val prepareSeriesToAddUseCase by lazy { PrepareSeriesToAddUseCase() }
+    private val prepareSeriesToAddAction by lazy { PrepareSeriesToAddUseCase() }
 
-    val getChangedMovieUseCase by lazy {
-        GetChangedMovieUseCase(
+    val getChangedMovieAction by lazy {
+        GetChangedMovieAction(
             movieChangesRepository
         )
     }

@@ -5,14 +5,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.domain.usecase.movies.AddGoodMovieUseCase
-import com.example.myfavoritemovie.domain.usecase.movies.AddNeedToWatchMovieUseCase
+import com.example.myfavoritemovie.domain.actions.movies.AddGoodMovieAction
+import com.example.myfavoritemovie.domain.actions.movies.AddNeedToWatchMovieAction
 import com.example.myfavoritemovie.ui.Event
 import kotlinx.coroutines.launch
 
 class MovieViewModel(
-    private val addGoodMovieUseCase: AddGoodMovieUseCase,
-    private val addNeedToWatchMovieUseCase: AddNeedToWatchMovieUseCase
+    private val addGoodMovieAction: AddGoodMovieAction,
+    private val addNeedToWatchMovieAction: AddNeedToWatchMovieAction
 ) : ViewModel() {
 
     private val _onLinkMovie = MutableLiveData<Event<Movie>>()
@@ -22,11 +22,11 @@ class MovieViewModel(
     val openMovieDialog: LiveData<Event<Movie>> = _openMovieDialog
 
     fun addGoodMovie(movie: Movie) = viewModelScope.launch {
-        addGoodMovieUseCase(movie)
+        addGoodMovieAction(movie)
     }
 
     fun addNeedToWatchMovie(movie: Movie) = viewModelScope.launch {
-        addNeedToWatchMovieUseCase(movie)
+        addNeedToWatchMovieAction(movie)
     }
 
     fun linkMovie(movie: Movie) = viewModelScope.launch {

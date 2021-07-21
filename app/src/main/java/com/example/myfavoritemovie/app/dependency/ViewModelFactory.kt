@@ -16,31 +16,31 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
 
     private val movieViewModel: MovieViewModel
         get() = MovieViewModel(
-            moviesModule.addGoodMovieUseCase,
-            moviesModule.addNeedToWatchMovieUseCase
+            moviesModule.addGoodMovieAction,
+            moviesModule.addNeedToWatchMovieAction
         )
 
     private val searchViewModel: SearchViewModel
         get() = SearchViewModel(
-            searchModule.searchMoviesUseCase,
-            moviesModule.getChangedMovieUseCase
+            searchModule.searchMoviesAction,
+            moviesModule.getChangedMovieAction
         )
 
     private val linkMovieViewModel: LinkMovieViewModel
         get() = LinkMovieViewModel(
-            searchModule.searchByMovieUseCase,
+            searchModule.searchByMovieAction,
             moviesModule.updateMovieUseCase,
-            moviesModule.getChangedMovieUseCase
+            moviesModule.getChangedMovieAction
         )
 
     private val movieDialogViewModel: MovieDialogViewModel
         get() = MovieDialogViewModel(
-            moviesModule.deleteMovieUseCase,
-            moviesModule.moveToWatchMovieUseCase,
-            moviesModule.changeMoviePosterUseCase,
-            searchModule.searchPostersByMovieUseCase,
-            searchModule.searchNamesForMovieUseCase,
-            moviesModule.changeMovieNameUseCase
+            moviesModule.deleteMovieAction,
+            moviesModule.moveToWatchMovieAction,
+            moviesModule.changeMoviePosterAction,
+            searchModule.searchPostersByMovieAction,
+            searchModule.searchNamesForMovieAction,
+            moviesModule.changeMovieNameAction
         )
 
     @Suppress("UNCHECKED_CAST")

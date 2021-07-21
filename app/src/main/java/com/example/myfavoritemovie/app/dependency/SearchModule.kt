@@ -2,31 +2,31 @@ package com.example.myfavoritemovie.app.dependency
 
 import com.example.myfavoritemovie.data.repository.SearchRepositoryImpl
 import com.example.myfavoritemovie.data.source.tmdb.createTMDbApiService
-import com.example.myfavoritemovie.domain.usecase.search.SearchByMovieUseCase
-import com.example.myfavoritemovie.domain.usecase.search.SearchMoviesUseCase
-import com.example.myfavoritemovie.domain.usecase.search.SearchNamesForMovieUseCase
-import com.example.myfavoritemovie.domain.usecase.search.SearchPostersByMovieUseCase
+import com.example.myfavoritemovie.domain.actions.search.SearchByMovieAction
+import com.example.myfavoritemovie.domain.actions.search.SearchMoviesAction
+import com.example.myfavoritemovie.domain.actions.search.SearchNamesForMovieAction
+import com.example.myfavoritemovie.domain.actions.search.SearchPostersByMovieAction
 
 class SearchModule(private val moviesModule: MoviesModule) {
-    val searchByMovieUseCase by lazy {
-        SearchByMovieUseCase(
-            searchMoviesUseCase
+    val searchByMovieAction by lazy {
+        SearchByMovieAction(
+            searchMoviesAction
         )
     }
-    val searchMoviesUseCase by lazy {
-        SearchMoviesUseCase(
+    val searchMoviesAction by lazy {
+        SearchMoviesAction(
             searchRepository
         )
     }
 
-    val searchPostersByMovieUseCase by lazy {
-        SearchPostersByMovieUseCase(
+    val searchPostersByMovieAction by lazy {
+        SearchPostersByMovieAction(
             searchRepository
         )
     }
 
-    val searchNamesForMovieUseCase by lazy {
-        SearchNamesForMovieUseCase(
+    val searchNamesForMovieAction by lazy {
+        SearchNamesForMovieAction(
             searchRepository
         )
     }

@@ -3,13 +3,13 @@ package com.example.myfavoritemovie.ui
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
-import com.example.myfavoritemovie.domain.usecase.movies.GetChangedMovieUseCase
+import com.example.myfavoritemovie.domain.actions.movies.GetChangedMovieAction
 
 abstract class ChangesMovieViewModel(
-    getChangedMovieUseCase: GetChangedMovieUseCase
+    getChangedMovieAction: GetChangedMovieAction
 ) : ViewModel() {
 
-    private val changedMovie = getChangedMovieUseCase()
+    private val changedMovie = getChangedMovieAction()
     private val movieChangesObserver = Observer<ChangedMovie> { onMovieChanged(it) }
 
     init {

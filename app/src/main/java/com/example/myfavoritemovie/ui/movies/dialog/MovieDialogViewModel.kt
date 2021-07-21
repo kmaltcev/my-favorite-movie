@@ -6,22 +6,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myfavoritemovie.domain.entity.Image
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.domain.usecase.movies.ChangeMovieNameUseCase
-import com.example.myfavoritemovie.domain.usecase.movies.ChangeMoviePosterUseCase
-import com.example.myfavoritemovie.domain.usecase.movies.DeleteMovieUseCase
-import com.example.myfavoritemovie.domain.usecase.movies.MoveToGoodMoviesUseCase
-import com.example.myfavoritemovie.domain.usecase.search.SearchNamesForMovieUseCase
-import com.example.myfavoritemovie.domain.usecase.search.SearchPostersByMovieUseCase
+import com.example.myfavoritemovie.domain.actions.movies.ChangeMovieNameAction
+import com.example.myfavoritemovie.domain.actions.movies.ChangeMoviePosterAction
+import com.example.myfavoritemovie.domain.actions.movies.DeleteMovieAction
+import com.example.myfavoritemovie.domain.actions.movies.MoveToGoodMoviesAction
+import com.example.myfavoritemovie.domain.actions.search.SearchNamesForMovieAction
+import com.example.myfavoritemovie.domain.actions.search.SearchPostersByMovieAction
 import com.example.myfavoritemovie.ui.Event
 import kotlinx.coroutines.launch
 
 class MovieDialogViewModel(
-    private val deleteMovieUseCase: DeleteMovieUseCase,
-    private val moveToGoodMoviesUseCase: MoveToGoodMoviesUseCase,
-    private val changeMoviePosterUseCase: ChangeMoviePosterUseCase,
-    private val searchPostersByMovieUseCase: SearchPostersByMovieUseCase,
-    private val searchNamesForMovieUseCase: SearchNamesForMovieUseCase,
-    private val changeMovieNameUseCase: ChangeMovieNameUseCase
+    private val deleteMovieAction: DeleteMovieAction,
+    private val moveToGoodMoviesAction: MoveToGoodMoviesAction,
+    private val changeMoviePosterAction: ChangeMoviePosterAction,
+    private val searchPostersByMovieAction: SearchPostersByMovieAction,
+    private val searchNamesForMovieAction: SearchNamesForMovieAction,
+    private val changeMovieNameAction: ChangeMovieNameAction
 ) : ViewModel() {
 
     private val _selectedMovie = MutableLiveData<Movie>()
@@ -42,36 +42,36 @@ class MovieDialogViewModel(
     }
 
     fun deleteMovie(movie: Movie) = viewModelScope.launch {
-        deleteMovieUseCase(movie)
+        deleteMovieAction(movie)
         _closeDialog.value = Event(true)
     }
 
     fun moveToGoodMovies(movie: Movie) = viewModelScope.launch {
-        moveToGoodMoviesUseCase(movie)
+        moveToGoodMoviesAction(movie)
         _closeDialog.value = Event(true)
     }
 
     fun searchPosters() = viewModelScope.launch {
         selectedMovie.value?.let {
-            _posters.value = Event(searchPostersByMovieUseCase(it))
+            _posters.value = Event(searchPostersByMovieAction(it))
         }
     }
 
     fun changeMoviePoster(poster: Image) = viewModelScope.launch {
         _selectedMovie.value?.let {
 //            _selectedMove.value = changeMoviePosterUseCase(it, poster)
-            changeMoviePosterUseCase(it, poster)
+            changeMoviePosterAction(it, poster)
             _closeDialog.value = Event(true)
         }
     }
 
     fun searchNames(movie: Movie) = viewModelScope.launch {
-        _names.value = Event(searchNamesForMovieUseCase(movie))
+        _names.value = Event(searchNamesForMovieAction(movie))
     }
 
     fun changeName(name: String) = viewModelScope.launch {
         _selectedMovie.value?.let {
-            _selectedMovie.value = changeMovieNameUseCase(it, name)
+            _selectedMovie.value = changeMovieNameAction(it, name)
         }
     }
 }
