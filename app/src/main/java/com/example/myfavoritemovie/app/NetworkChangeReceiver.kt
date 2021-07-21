@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.app.dependency
+package com.example.myfavoritemovie.app
 
 
 import android.content.BroadcastReceiver
