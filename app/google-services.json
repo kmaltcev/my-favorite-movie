@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "733291967942",
+    "firebase_url": "https://favorite-movies-8fc74-default-rtdb.firebaseio.com",
+    "project_id": "favorite-movies-8fc74",
+    "storage_bucket": "favorite-movies-8fc74.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:733291967942:android:509fdf08ae143bb984eec7",
+        "android_client_info": {
+          "package_name": "com.example.myfavoritemovie"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "733291967942-f71530t3j6kibnb5g1945esudkqep8dr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8KS6owHXyRsCQmUbQdGF_JoKn0drvIHc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "733291967942-f71530t3j6kibnb5g1945esudkqep8dr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
