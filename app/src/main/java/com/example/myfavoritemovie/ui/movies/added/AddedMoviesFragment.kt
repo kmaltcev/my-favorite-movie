@@ -15,7 +15,7 @@ import com.google.firebase.database.Query
 import com.example.myfavoritemovie.R
 import com.example.myfavoritemovie.app.app
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
-import com.example.myfavoritemovie.data.repository.converters.parseMovie
+import com.example.myfavoritemovie.data.converters.parseMovie
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.databinding.FragmentMoviesBinding
 import com.example.myfavoritemovie.domain.entity.Movie

@@ -1,6 +1,6 @@
 package com.example.myfavoritemovie.domain.repository
 
-import com.example.myfavoritemovie.data.repository.converters.buildFirebaseMovieDto
+import com.example.myfavoritemovie.data.converters.buildFirebaseMovieDto
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSource
 import com.example.myfavoritemovie.data.source.firebase.dto.FirebaseMovieDto

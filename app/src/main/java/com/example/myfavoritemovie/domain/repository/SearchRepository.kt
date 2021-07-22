@@ -1,9 +1,9 @@
 package com.example.myfavoritemovie.domain.repository
 
 import android.util.Log
-import com.example.myfavoritemovie.data.repository.converters.buildImage
-import com.example.myfavoritemovie.data.repository.converters.toMovie
-import com.example.myfavoritemovie.data.repository.converters.toSeries
+import com.example.myfavoritemovie.data.converters.buildImage
+import com.example.myfavoritemovie.data.converters.toMovie
+import com.example.myfavoritemovie.data.converters.toSeries
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.data.source.tmdb.TMDbApiService
 import com.example.myfavoritemovie.data.source.tmdb.createTMDbAbsoluteImageUri
