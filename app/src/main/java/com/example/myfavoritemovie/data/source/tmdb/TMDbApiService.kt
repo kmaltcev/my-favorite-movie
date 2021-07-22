@@ -8,7 +8,6 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TMDbApiService {
-
     @GET("search/multi")
     suspend fun multipleSearch(
         @Query("query") query: String,
@@ -41,4 +40,10 @@ interface TMDbApiService {
         @Path("season_number") seasonNumber: Int,
         @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
     ): PostersDto
+
+    @GET("/movie/upcoming/")
+    suspend fun getUpcomingMovies(
+        @Query("region") region: String = "IL",
+        @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
+    ): SearchResultDto
 }

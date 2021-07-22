@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myfavoritemovie.app.app
-import com.example.myfavoritemovie.ui.linkmovie.LinkMovieViewModel
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel
 import com.example.myfavoritemovie.ui.search.SearchViewModel
@@ -26,13 +25,6 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
             moviesModule.getChangedMovieAction
         )
 
-    private val linkMovieViewModel: LinkMovieViewModel
-        get() = LinkMovieViewModel(
-            searchModule.searchByMovieAction,
-            moviesModule.updateMovieUseCase,
-            moviesModule.getChangedMovieAction
-        )
-
     private val movieDialogViewModel: MovieDialogViewModel
         get() = MovieDialogViewModel(
             moviesModule.deleteMovieAction,
@@ -51,9 +43,6 @@ class ViewModelFactory(context: Context) : ViewModelProvider.Factory {
             }
             isAssignableFrom(MovieViewModel::class.java) -> {
                 movieViewModel
-            }
-            isAssignableFrom(LinkMovieViewModel::class.java) -> {
-                linkMovieViewModel
             }
             isAssignableFrom(MovieDialogViewModel::class.java) -> {
                 movieDialogViewModel

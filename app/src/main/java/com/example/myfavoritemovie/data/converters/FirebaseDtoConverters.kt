@@ -32,7 +32,8 @@ fun buildFirebaseMovieDto(movie: Movie): FirebaseMovieDto =
                 )
             },
             episodeCount,
-            seasonNumber
+            seasonNumber,
+            releaseDate
         )
     }
 
@@ -44,7 +45,8 @@ fun buildFirebaseSeriesDto(series: Series): FirebaseSeriesDto =
             releaseYear,
             poster.toString(),
             internalId.toString(),
-            externalId
+            externalId,
+            releaseDate
         )
     }
 
@@ -54,7 +56,6 @@ private fun MovieType.toFirebaseConst() = when (this) {
     MovieType.ANIME -> MEDIA_TYPE_ANIME
     MovieType.UNKNOWN -> MEDIA_TYPE_UNKNOWN
     MovieType.CARTOON -> MEDIA_TYPE_CARTOON
-
 }
 
 private fun WatchStatus.toFirebaseConst() = when (this) {
@@ -80,14 +81,16 @@ fun FirebaseMovieDto.toMovie(): Movie = Movie(
     dateAdded,
     relatedSeries?.toSeries(),
     episodeCount,
-    seasonNumber
+    seasonNumber,
+    releaseDate
 )
 
 fun FirebaseSeriesDto.toSeries(): Series = Series(
     name, originalName, releaseYear,
     poster?.let { buildImage(it) },
     UUID.fromString(internalId),
-    externalId
+    externalId,
+    releaseDate
 )
 
 private fun buildImage(image: String): Image? = if (image.contains("http")) {

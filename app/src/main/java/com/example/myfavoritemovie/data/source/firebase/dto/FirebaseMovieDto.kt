@@ -1,5 +1,6 @@
 package com.example.myfavoritemovie.data.source.firebase.dto
 
+
 data class FirebaseMovieDto(
     var name: String = "",
     var originalName: String = "",
@@ -16,5 +17,7 @@ data class FirebaseMovieDto(
 
     var relatedSeries: FirebaseSeriesDto? = null,
     var episodeCount: Int? = null,
-    var seasonNumber: Int? = null
+    var seasonNumber: Int? = null,
+
+    var releaseDate: String = ""
 )

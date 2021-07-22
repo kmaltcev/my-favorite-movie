@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.app
+package com.example.myfavoritemovie.data.service
 
 
 import android.content.BroadcastReceiver

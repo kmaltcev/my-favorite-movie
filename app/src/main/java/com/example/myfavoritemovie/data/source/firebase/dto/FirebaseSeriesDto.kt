@@ -7,5 +7,6 @@ data class FirebaseSeriesDto(
     var poster: String? = null,
 
     var internalId: String = "",
-    var externalId: Int? = null
+    var externalId: Int? = null,
+    var releaseDate: String = ""
 )

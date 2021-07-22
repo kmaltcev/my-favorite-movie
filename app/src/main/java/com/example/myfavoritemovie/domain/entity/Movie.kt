@@ -18,5 +18,6 @@ data class Movie(
 
     val relatedSeries: Series? = null,
     val episodeCount: Int? = null,
-    val seasonNumber: Int? = null
+    val seasonNumber: Int? = null,
+    val releaseDate: String = ""
 )

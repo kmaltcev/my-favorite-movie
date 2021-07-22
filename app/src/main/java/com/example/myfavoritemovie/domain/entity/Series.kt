@@ -8,5 +8,6 @@ data class Series(
     val releaseYear: Int,
     val poster: Image? = null,
     val internalId: UUID? = null,
-    val externalId: Int? = null
+    val externalId: Int? = null,
+    val releaseDate: String = ""
 )

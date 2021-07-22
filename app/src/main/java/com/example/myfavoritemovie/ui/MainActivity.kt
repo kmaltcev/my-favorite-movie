@@ -3,14 +3,12 @@ package com.example.myfavoritemovie.ui
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.myfavoritemovie.R
-import com.example.myfavoritemovie.app.NetworkChangeReceiver
+import com.example.myfavoritemovie.data.service.NetworkChangeReceiver
 import com.example.myfavoritemovie.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
