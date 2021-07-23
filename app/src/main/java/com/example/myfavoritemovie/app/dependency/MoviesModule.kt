@@ -21,12 +21,6 @@ class MoviesModule {
             prepareMovieToAddAction
         )
     }
-    val updateMovieUseCase by lazy {
-        LinkMovieAction(
-            moviesRepository,
-            prepareSeriesToAddAction
-        )
-    }
     val deleteMovieAction by lazy {
         DeleteMovieAction(
             moviesRepository,

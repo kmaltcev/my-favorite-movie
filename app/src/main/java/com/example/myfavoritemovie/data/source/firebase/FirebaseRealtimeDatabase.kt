@@ -17,11 +17,8 @@ class FirebaseRealtimeDatabase {
     private val database by lazy { Firebase.database.reference }
 
     val favoriteMovies: DatabaseReference by lazy { database.child(PATH_FAVORITE_MOVIES) }
-    val needToWatchMovies: DatabaseReference by lazy {
-        database.child(
-            PATH_NEED_TO_WATCH_MOVIES
-        )
-    }
+    val needToWatchMovies: DatabaseReference by lazy { database.child(PATH_NEED_TO_WATCH_MOVIES) }
+    val upcomingMovies: DatabaseReference by lazy { database.child(PATH_TO_UPCOMING_MOVIES) }
     private val series: DatabaseReference by lazy { database.child(PATH_SERIES) }
 
     fun putFavoriteMovie(movie: FirebaseMovieDto) {
@@ -36,6 +33,12 @@ class FirebaseRealtimeDatabase {
             .setValue(movie)
     }
 
+    fun putUpcomingMovie(movie: FirebaseMovieDto) {
+        upcomingMovies
+            .child(movie.internalId)
+            .setValue(movie)
+    }
+
     fun putSeries(series: FirebaseSeriesDto) {
         this.series
             .child(series.internalId)
@@ -44,6 +47,10 @@ class FirebaseRealtimeDatabase {
 
     suspend fun getAllMovies(): List<FirebaseMovieDto> {
         return favoriteMovies.getMovies() + needToWatchMovies.getMovies()
+    }
+
+    suspend fun getUpcomingMovies(): List<FirebaseMovieDto> {
+        return upcomingMovies.getMovies()
     }
 
     suspend fun getAllSeries(): List<FirebaseSeriesDto> {
@@ -56,16 +63,13 @@ class FirebaseRealtimeDatabase {
                 override fun onCancelled(databaesError: DatabaseError) {
                     continuation.resumeWithException(RuntimeException("Query was cancelled! ${databaesError.message}"))
                 }
-
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     continuation.resume(
                         dataSnapshot
                             .children
                             .map { it.getValue(FirebaseMovieDto::class.java)!! }
                     )
-
                 }
-
             })
         }
 
@@ -82,9 +86,7 @@ class FirebaseRealtimeDatabase {
                             .children
                             .map { it.getValue(FirebaseSeriesDto::class.java)!! }
                     )
-
                 }
-
             })
         }
 
@@ -100,5 +102,6 @@ class FirebaseRealtimeDatabase {
         const val PATH_FAVORITE_MOVIES = "favoriteMovies"
         const val PATH_NEED_TO_WATCH_MOVIES = "needToWatchMovies"
         const val PATH_SERIES = "series"
+        const val PATH_TO_UPCOMING_MOVIES = "upcomingMovies"
     }
 }

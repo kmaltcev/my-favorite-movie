@@ -41,7 +41,7 @@ interface TMDbApiService {
         @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
     ): PostersDto
 
-    @GET("/movie/upcoming/")
+    @GET("movie/upcoming")
     suspend fun getUpcomingMovies(
         @Query("region") region: String = "IL",
         @Query("api_key") apiKey: String = TMDbApiKey.API_KEY

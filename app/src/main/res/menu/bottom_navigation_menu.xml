@@ -15,6 +15,11 @@
         android:enabled="true"
         android:icon="@drawable/ic_search"
         android:title="" />
+    <item
+        android:id="@+id/upcomingFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_edit"
+        android:title="" />
 
 </menu>
 

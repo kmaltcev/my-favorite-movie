@@ -20,6 +20,23 @@ class SearchRepository(
     private val firebaseRealtimeDatabase: FirebaseRealtimeDatabase
 ) {
 
+    suspend fun searchUpcomingMovies(region: String): List<Movie> {
+        val medias = tmdbApiService.getUpcomingMovies(region).results
+        val movies = mutableListOf<Movie>()
+        medias.forEach {
+            movies.add(it.toMovie())
+        }
+        val upcomingMovies = firebaseRealtimeDatabase.getUpcomingMovies()
+            .filter { it.externalId != null }
+        for (i in movies.indices) {
+            val addedMovie = upcomingMovies.find { it.externalId == movies[i].externalId }
+            if (addedMovie != null) {
+                movies[i] = addedMovie.toMovie()
+            }
+        }
+        return movies
+    }
+
     suspend fun searchMovies(query: String): List<Movie> {
         val medias = withContext(Dispatchers.IO) {
             tmdbApiService.multipleSearch(query).results
@@ -38,21 +55,15 @@ class SearchRepository(
         val addedMovies = firebaseRealtimeDatabase.getAllMovies()
             .filter { it.externalId != null }
 
-        Log.wtf("MY_APP_ADDED_MOVIES", addedMovies.toString())
-
         val addedSeries = firebaseRealtimeDatabase.getAllSeries()
             .filter { it.externalId != null }
 
-        Log.wtf("MY_APP_ADDED_SERIES", addedSeries.toString())
-
         for (i in movies.indices) {
             val addedMovie = addedMovies.find { it.externalId == movies[i].externalId }
-
             if (addedMovie != null) {
                 movies[i] = addedMovie.toMovie()
             } else {
                 movies[i].relatedSeries?.let { relatedSeries ->
-
                     val addedSerie = addedSeries.find { it.externalId == relatedSeries.externalId }
                     addedSerie?.let {
                         movies[i] = movies[i].copy(
@@ -61,9 +72,8 @@ class SearchRepository(
                     }
                 }
             }
-            Log.wtf("GET_MOVIE[$i]", movies[i].toString())
         }
-        Log.wtf("TOTAL_MOVIES", movies.toString())
+        Log.wtf("MY_APP_SEARCH_RESULT", movies.toString())
         return movies
     }
 
@@ -75,17 +85,12 @@ class SearchRepository(
     }
 
     suspend fun searchPosters(movie: Movie): List<Image> = withContext(Dispatchers.IO) {
-
         if (movie.externalId == null) {
             return@withContext emptyList<Image>()
         }
-
         val posters: List<Image>
-
         if (movie.relatedSeries != null) {
-
             val allPosters = mutableListOf<Image>()
-
             movie.relatedSeries.externalId?.let { tvId ->
                 allPosters.addAll(
                     movie.seasonNumber?.let {
@@ -94,16 +99,13 @@ class SearchRepository(
                             .mapNotNull { dto -> buildImage(createTMDbAbsoluteImageUri(dto.relatedUri)) }
                     } ?: emptyList()
                 )
-
                 allPosters.addAll(
                     tmdbApiService.getTvPosters(tvId)
                         .posters
                         .mapNotNull { dto -> buildImage(createTMDbAbsoluteImageUri(dto.relatedUri)) }
                 )
             }
-
             posters = allPosters.distinct()
-
         } else {
             posters = tmdbApiService.getPosters(movie.externalId)
                 .posters
@@ -113,17 +115,13 @@ class SearchRepository(
     }
 
     suspend fun searchNames(movie: Movie): List<String> {
-
         if (movie.relatedSeries?.externalId == null || movie.seasonNumber == null) {
             return emptyList()
         }
-
         val enTv = tmdbApiService.getTvDetails(movie.relatedSeries.externalId)
         val ruTv = tmdbApiService.getTvDetails(movie.relatedSeries.externalId, "ru")
-
         val enSeason = enTv.seasons.find { it.seasonNumber == movie.seasonNumber }!!
         val ruSeason = ruTv.seasons.find { it.seasonNumber == movie.seasonNumber }!!
-
         return listOf(
             enTv.name,
             ruTv.name,
@@ -136,4 +134,6 @@ class SearchRepository(
         ).distinct()
             .filterNot { it.isBlank() && it.length > 3 }
     }
+
+
 }

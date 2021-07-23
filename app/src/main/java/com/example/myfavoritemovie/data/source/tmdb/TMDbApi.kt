@@ -35,7 +35,6 @@ fun getYearFromTMDbDate(date: String): Int {
     if (date.isBlank()) {
         return 0
     }
-
     return Calendar.getInstance()
         .apply { time = dateFormatter.parse(date)!! }
         .get(Calendar.YEAR)

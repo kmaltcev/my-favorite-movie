@@ -17,14 +17,14 @@ class SearchModule(private val moviesModule: MoviesModule) {
         SearchNamesForMovieAction(searchRepository)
     }
 
+    val searchUpcomingAction by lazy {
+        SearchUpcomingAction(searchRepository)
+    }
+
     private val searchRepository by lazy {
         SearchRepository(
             createTMDbApiService(),
             moviesModule.firebaseRealtimeDatabase
         )
-    }
-
-    val searchUpcomingAction by lazy {
-        SearchUpcomingAction(searchRepository)
     }
 }

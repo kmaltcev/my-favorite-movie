@@ -1,25 +1,23 @@
-package com.example.myfavoritemovie.ui.search
+package com.example.myfavoritemovie.ui.upcoming
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
-import com.example.myfavoritemovie.databinding.FragmentSearchBinding
+import com.example.myfavoritemovie.databinding.FragmentUpcomingBinding
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesAdapter
 
-class SearchFragment : Fragment() {
+class UpcomingFragment : Fragment() {
 
     private val viewModelsFactory by lazy { ViewModelFactory(requireContext()) }
 
-    private val viewModel by viewModels<SearchViewModel> { viewModelsFactory }
+    private val viewModel by viewModels<UpcomingViewModel> { viewModelsFactory }
     private val movieViewModel by viewModels<MovieViewModel> { viewModelsFactory }
 
     override fun onCreateView(
@@ -27,40 +25,21 @@ class SearchFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentSearchBinding.inflate(inflater, container, false)
+        val binding = FragmentUpcomingBinding.inflate(inflater, container, false)
         val adapter = MoviesAdapter(movieViewModel, viewLifecycleOwner)
-
+        viewModel.search("RU")
         with(binding) {
             lifecycleOwner = viewLifecycleOwner
-            searchViewModel = viewModel
+            upcomingViewModel = viewModel
 
             listMovies.layoutManager = LinearLayoutManager(requireContext())
             listMovies.adapter = adapter
 
-            viewModel.searchResults
+            viewModel.upcomingMovies
                 .observe(viewLifecycleOwner) { movies ->
                     adapter.submitList(movies)
                 }
-
-            val onSearch = {
-                val query: String = editSearch.text.toString()
-                Log.wtf("MY_APP_QUERY", query)
-                viewModel.search(query)
-            }
-
-            inputLayoutSearch.setEndIconOnClickListener {
-                onSearch()
-            }
-            editSearch.setOnEditorActionListener { _, actionId, _ ->
-                return@setOnEditorActionListener when (actionId) {
-                    EditorInfo.IME_ACTION_SEARCH -> {
-                        onSearch()
-                        true
-                    }
-                    else -> false
-                }
-            }
+            return root
         }
-        return binding.root
     }
 }

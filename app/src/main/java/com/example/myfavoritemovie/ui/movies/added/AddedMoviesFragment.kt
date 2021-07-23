@@ -42,22 +42,24 @@ abstract class AddedMoviesFragment : Fragment() {
     ): View? {
         val binding = FragmentMoviesBinding.inflate(inflater, container, false)
 
-        binding.textTitle.text = getTitle()
+        with(binding) {
+            textTitle.text = getTitle()
 
-        layoutManager = LinearLayoutManager(requireContext()).apply {
-            reverseLayout = true
-            stackFromEnd = true
+            layoutManager = LinearLayoutManager(requireContext()).apply {
+                reverseLayout = true
+                stackFromEnd = true
+            }
+
+            listMovies.layoutManager = layoutManager
+            listMovies.adapter = adapter
+
+            viewModel.openMovieDialog.observe(viewLifecycleOwner, EventObserver {
+                movieDialogViewModel.selectMovie(it)
+                MovieDialog().show(childFragmentManager, null)
+            })
+
+            return root
         }
-
-        binding.listMovies.layoutManager = layoutManager
-        binding.listMovies.adapter = adapter
-
-        viewModel.openMovieDialog.observe(viewLifecycleOwner, EventObserver {
-            movieDialogViewModel.selectMovie(it)
-            MovieDialog().show(childFragmentManager, null)
-        })
-
-        return binding.root
     }
 
     private fun createMoviesAdapter(): MoviesFirebaseAdapter {

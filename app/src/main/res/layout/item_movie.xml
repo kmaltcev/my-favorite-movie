@@ -108,21 +108,6 @@
             app:layout_constraintTop_toBottomOf="@id/text_name" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_search_by_movie"
-            style="@style/Widget.MyFavoriteMovie.Button.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:icon="@drawable/ic_link"
-            android:visibility="@{movie.externalId == null ? View.VISIBLE : View.GONE}"
-            android:onClick="@{() -> viewModel.linkMovie(movie)}"
-            app:layout_constraintBottom_toBottomOf="@id/card_poster"
-            app:layout_constraintStart_toEndOf="@id/card_poster"
-            app:layout_constraintTop_toBottomOf="@id/text_name" />
-
-        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_add"
             style="@style/Widget.MyFavoriteMovie.Button.Icon"
             android:layout_width="wrap_content"
