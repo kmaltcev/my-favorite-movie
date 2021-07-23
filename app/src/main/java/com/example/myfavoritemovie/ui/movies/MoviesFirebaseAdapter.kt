@@ -2,9 +2,9 @@ package com.example.myfavoritemovie.ui.movies
 
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import com.example.myfavoritemovie.domain.entity.Movie
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.example.myfavoritemovie.domain.entity.Movie
 
 class MoviesFirebaseAdapter(
     options: FirebaseRecyclerOptions<Movie>,

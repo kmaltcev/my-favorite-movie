@@ -1,11 +1,11 @@
 package com.example.myfavoritemovie.data.converters
 
 import android.net.Uri
+import com.example.myfavoritemovie.data.source.firebase.dto.*
+import com.example.myfavoritemovie.domain.entity.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import com.example.myfavoritemovie.data.source.firebase.dto.*
-import com.example.myfavoritemovie.domain.entity.*
 import java.util.*
 
 private val storageReference by lazy { Firebase.storage.reference }
@@ -93,9 +93,8 @@ fun FirebaseSeriesDto.toSeries(): Series = Series(
     releaseDate
 )
 
-private fun buildImage(image: String): Image? = if (image.contains("http")) {
+private fun buildImage(image: String): Image = if (image.contains("http")) {
     UriImage(Uri.parse(image))
-    //null
 } else {
     StorageReferenceImage(storageReference.child(image))
 }

@@ -12,11 +12,11 @@ const val NO_ACTIVE_NETWORK = 0
 const val CELLULAR_NETWORK = 1
 const val WIFI_NETWORK = 2
 
-class NetworkChangeReceiver: BroadcastReceiver() {
+class NetworkChangeReceiver : BroadcastReceiver() {
     private var lastAvailable = 0
     override fun onReceive(context: Context?, intent: Intent?) {
         val currNetworkStatus = checkNetwork(context)
-        when(currNetworkStatus) {
+        when (currNetworkStatus) {
             NO_ACTIVE_NETWORK ->
                 if (lastAvailable != NO_ACTIVE_NETWORK)
                     Toast.makeText(context, "Network Unavailable", Toast.LENGTH_SHORT).show()

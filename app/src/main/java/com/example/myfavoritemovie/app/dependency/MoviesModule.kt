@@ -1,10 +1,10 @@
 package com.example.myfavoritemovie.app.dependency
 
-import com.example.myfavoritemovie.domain.repository.MovieChangesRepository
-import com.example.myfavoritemovie.domain.repository.MoviesRepository
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.data.source.firebase.FirebaseStorageDataSource
 import com.example.myfavoritemovie.domain.actions.movies.*
+import com.example.myfavoritemovie.domain.repository.MovieChangesRepository
+import com.example.myfavoritemovie.domain.repository.MoviesRepository
 
 class MoviesModule {
     val addNeedToWatchMovieAction by lazy {

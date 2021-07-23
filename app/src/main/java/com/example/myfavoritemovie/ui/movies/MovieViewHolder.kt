@@ -19,7 +19,8 @@ class MovieViewHolder private constructor(
 
     companion object {
         fun createFrom(parent: ViewGroup, lifecycleOwner: LifecycleOwner): MovieViewHolder {
-            val itemBinding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val itemBinding =
+                ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             itemBinding.lifecycleOwner = lifecycleOwner
             return MovieViewHolder(itemBinding)
         }

@@ -2,8 +2,8 @@ package com.example.myfavoritemovie.ui
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.example.myfavoritemovie.domain.entity.ChangedMovie
 import com.example.myfavoritemovie.domain.actions.movies.GetChangedMovieAction
+import com.example.myfavoritemovie.domain.entity.ChangedMovie
 
 abstract class ChangesMovieViewModel(
     getChangedMovieAction: GetChangedMovieAction

@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.firebase.ui.database.FirebaseRecyclerOptions
-import com.google.firebase.database.Query
 import com.example.myfavoritemovie.app.app
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.data.converters.parseMovie
@@ -22,13 +20,15 @@ import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesFirebaseAdapter
 import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog
 import com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel
+import com.firebase.ui.database.FirebaseRecyclerOptions
+import com.google.firebase.database.Query
 
 abstract class AddedMoviesFragment : Fragment() {
 
     private val viewModelFactory by lazy { ViewModelFactory(requireContext()) }
 
     private val viewModel by viewModels<MovieViewModel> { viewModelFactory }
-    private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelFactory}
+    private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelFactory }
 
     private val adapter by lazy { createMoviesAdapter() }
 
@@ -66,7 +66,10 @@ abstract class AddedMoviesFragment : Fragment() {
         val firebaseRealtimeDatabase = requireContext().app.moviesModule.firebaseRealtimeDatabase
 
         val options = FirebaseRecyclerOptions.Builder<Movie>()
-            .setQuery(getMoviesQuery(firebaseRealtimeDatabase).orderByChild("dateAdded"), ::parseMovie)
+            .setQuery(
+                getMoviesQuery(firebaseRealtimeDatabase).orderByChild("dateAdded"),
+                ::parseMovie
+            )
             .setLifecycleOwner(this)
             .build()
 

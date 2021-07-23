@@ -1,6 +1,5 @@
 package com.example.myfavoritemovie.domain.repository
 
-import android.util.Log
 import com.example.myfavoritemovie.data.converters.buildImage
 import com.example.myfavoritemovie.data.converters.toMovie
 import com.example.myfavoritemovie.data.converters.toSeries
@@ -21,20 +20,25 @@ class SearchRepository(
 ) {
 
     suspend fun searchUpcomingMovies(region: String): List<Movie> {
-        val medias = tmdbApiService.getUpcomingMovies(region).results
-        val movies = mutableListOf<Movie>()
-        medias.forEach {
-            movies.add(it.toMovie())
+        val tmdbUpcoming = withContext(Dispatchers.IO) {
+            tmdbApiService.getUpcomingMovies(region).results
         }
-        val upcomingMovies = firebaseRealtimeDatabase.getUpcomingMovies()
+
+        val firebaseUpcoming = mutableListOf<Movie>()
+        tmdbUpcoming.forEach {
+            firebaseUpcoming.add(it.toMovie())
+        }
+
+        val upcomingMovies = firebaseRealtimeDatabase.getAllMovies()
             .filter { it.externalId != null }
-        for (i in movies.indices) {
-            val addedMovie = upcomingMovies.find { it.externalId == movies[i].externalId }
+
+        for (i in firebaseUpcoming.indices) {
+            val addedMovie = upcomingMovies.find { it.externalId == firebaseUpcoming[i].externalId }
             if (addedMovie != null) {
-                movies[i] = addedMovie.toMovie()
+                firebaseUpcoming[i] = addedMovie.toMovie()
             }
         }
-        return movies
+        return firebaseUpcoming
     }
 
     suspend fun searchMovies(query: String): List<Movie> {
@@ -73,7 +77,6 @@ class SearchRepository(
                 }
             }
         }
-        Log.wtf("MY_APP_SEARCH_RESULT", movies.toString())
         return movies
     }
 
@@ -134,6 +137,4 @@ class SearchRepository(
         ).distinct()
             .filterNot { it.isBlank() && it.length > 3 }
     }
-
-
 }

@@ -1,8 +1,11 @@
 package com.example.myfavoritemovie.app.dependency
 
-import com.example.myfavoritemovie.domain.repository.SearchRepository
 import com.example.myfavoritemovie.data.source.tmdb.createTMDbApiService
-import com.example.myfavoritemovie.domain.actions.search.*
+import com.example.myfavoritemovie.domain.actions.search.SearchMoviesAction
+import com.example.myfavoritemovie.domain.actions.search.SearchNamesForMovieAction
+import com.example.myfavoritemovie.domain.actions.search.SearchPostersByMovieAction
+import com.example.myfavoritemovie.domain.actions.search.SearchUpcomingAction
+import com.example.myfavoritemovie.domain.repository.SearchRepository
 
 class SearchModule(private val moviesModule: MoviesModule) {
     val searchMoviesAction by lazy {

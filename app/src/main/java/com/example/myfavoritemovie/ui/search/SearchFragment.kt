@@ -1,7 +1,6 @@
 package com.example.myfavoritemovie.ui.search
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,7 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val binding = FragmentSearchBinding.inflate(inflater, container, false)
         val adapter = MoviesAdapter(movieViewModel, viewLifecycleOwner)
 
@@ -44,7 +43,6 @@ class SearchFragment : Fragment() {
 
             val onSearch = {
                 val query: String = editSearch.text.toString()
-                Log.wtf("MY_APP_QUERY", query)
                 viewModel.search(query)
             }
 

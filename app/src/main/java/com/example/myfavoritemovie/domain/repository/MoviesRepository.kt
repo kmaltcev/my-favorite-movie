@@ -23,12 +23,6 @@ class MoviesRepository(
         putMovieUse(movie, firebaseRealtimeDatabase::putNeedToWatchMovie)
     }
 
-    suspend fun addUpcomingMovies(movies: List<Movie>) {
-        movies.forEach { movie ->
-            putMovieUse(movie, firebaseRealtimeDatabase::putUpcomingMovie)
-        }
-    }
-
     suspend fun updateFavoriteMovie(updatedMovie: Movie) {
         putMovieUse(updatedMovie, firebaseRealtimeDatabase::putFavoriteMovie)
     }

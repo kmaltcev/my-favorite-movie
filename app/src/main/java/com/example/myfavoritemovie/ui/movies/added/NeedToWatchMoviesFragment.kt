@@ -1,7 +1,7 @@
 package com.example.myfavoritemovie.ui.movies.added
 
-import com.google.firebase.database.Query
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
+import com.google.firebase.database.Query
 
 class NeedToWatchMoviesFragment : AddedMoviesFragment() {
 

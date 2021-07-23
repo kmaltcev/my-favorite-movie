@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.actions.movies.AddFavoriteMovieAction
 import com.example.myfavoritemovie.domain.actions.movies.AddNeedToWatchMovieAction
+import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.ui.Event
 import kotlinx.coroutines.launch
 

@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myfavoritemovie.domain.entity.Image
-import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.actions.movies.ChangeMovieNameAction
 import com.example.myfavoritemovie.domain.actions.movies.ChangeMoviePosterAction
 import com.example.myfavoritemovie.domain.actions.movies.DeleteMovieAction
 import com.example.myfavoritemovie.domain.actions.movies.MoveToFavoriteMoviesAction
 import com.example.myfavoritemovie.domain.actions.search.SearchNamesForMovieAction
 import com.example.myfavoritemovie.domain.actions.search.SearchPostersByMovieAction
+import com.example.myfavoritemovie.domain.entity.Image
+import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.ui.Event
 import kotlinx.coroutines.launch
 

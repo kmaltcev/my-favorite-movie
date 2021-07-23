@@ -25,5 +25,5 @@
         android:id="@+id/upcomingFragment"
         android:name="com.example.myfavoritemovie.ui.upcoming.UpcomingFragment"
         android:label="UpcomingFragment"
-        tools:layout="@layout/fragment_upcoming" />
+        tools:layout="@layout/fragment_upcoming"/>
 </navigation>

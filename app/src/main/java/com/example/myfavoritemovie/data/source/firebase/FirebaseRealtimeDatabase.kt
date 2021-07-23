@@ -33,12 +33,6 @@ class FirebaseRealtimeDatabase {
             .setValue(movie)
     }
 
-    fun putUpcomingMovie(movie: FirebaseMovieDto) {
-        upcomingMovies
-            .child(movie.internalId)
-            .setValue(movie)
-    }
-
     fun putSeries(series: FirebaseSeriesDto) {
         this.series
             .child(series.internalId)
@@ -47,10 +41,6 @@ class FirebaseRealtimeDatabase {
 
     suspend fun getAllMovies(): List<FirebaseMovieDto> {
         return favoriteMovies.getMovies() + needToWatchMovies.getMovies()
-    }
-
-    suspend fun getUpcomingMovies(): List<FirebaseMovieDto> {
-        return upcomingMovies.getMovies()
     }
 
     suspend fun getAllSeries(): List<FirebaseSeriesDto> {
@@ -63,6 +53,7 @@ class FirebaseRealtimeDatabase {
                 override fun onCancelled(databaesError: DatabaseError) {
                     continuation.resumeWithException(RuntimeException("Query was cancelled! ${databaesError.message}"))
                 }
+
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     continuation.resume(
                         dataSnapshot

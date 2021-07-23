@@ -14,11 +14,14 @@ open class PostersAdapter(
     private val lifecycleOwner: LifecycleOwner
 ) : ListAdapter<Image, PostersAdapter.PosterViewHolder>(PosterDiffCallback()) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostersAdapter.PosterViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): PosterViewHolder {
         return PosterViewHolder.createFrom(parent, lifecycleOwner)
     }
 
-    override fun onBindViewHolder(holder: PostersAdapter.PosterViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: PosterViewHolder, position: Int) {
         holder.bind(getItem(position), viewModel)
     }
 
@@ -44,7 +47,8 @@ open class PostersAdapter(
 
         companion object {
             fun createFrom(parent: ViewGroup, lifecycleOwner: LifecycleOwner): PosterViewHolder {
-                val itemBinding = ItemPosterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                val itemBinding =
+                    ItemPosterBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 itemBinding.lifecycleOwner = lifecycleOwner
                 return PosterViewHolder(itemBinding)
             }
