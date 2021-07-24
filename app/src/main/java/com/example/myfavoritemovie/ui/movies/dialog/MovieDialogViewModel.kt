@@ -59,7 +59,6 @@ class MovieDialogViewModel(
 
     fun changeMoviePoster(poster: Image) = viewModelScope.launch {
         _selectedMovie.value?.let {
-//            _selectedMove.value = changeMoviePosterUseCase(it, poster)
             changeMoviePosterAction(it, poster)
             _closeDialog.value = Event(true)
         }

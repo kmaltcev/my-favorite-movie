@@ -20,7 +20,7 @@ class PrepareMovieToAddAction(
                 watchStatus = watchStatus,
                 internalId = generateInternalId(),
                 relatedSeries = relatedSeries,
-                dateAdded = generateDateAdded()
+                dateAdded = generateDateAdded(),
             )
             movie.inNotStatus(watchStatus) -> movie.copy(
                 watchStatus = watchStatus,

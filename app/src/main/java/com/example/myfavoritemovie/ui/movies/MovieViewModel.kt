@@ -15,9 +15,6 @@ class MovieViewModel(
     private val addNeedToWatchMovieAction: AddNeedToWatchMovieAction
 ) : ViewModel() {
 
-    private val _onLinkMovie = MutableLiveData<Event<Movie>>()
-    val onLinkMovie: LiveData<Event<Movie>> = _onLinkMovie
-
     private val _openMovieDialog = MutableLiveData<Event<Movie>>()
     val openMovieDialog: LiveData<Event<Movie>> = _openMovieDialog
 
@@ -27,10 +24,6 @@ class MovieViewModel(
 
     fun addNeedToWatchMovie(movie: Movie) = viewModelScope.launch {
         addNeedToWatchMovieAction(movie)
-    }
-
-    fun linkMovie(movie: Movie) = viewModelScope.launch {
-        _onLinkMovie.value = Event(movie)
     }
 
     fun openMovieDialog(movie: Movie) {

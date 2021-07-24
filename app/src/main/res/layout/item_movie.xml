@@ -52,14 +52,14 @@
             android:layout_marginEnd="16dp"
             android:alpha="0.4"
             android:fontFamily="sans-serif-light"
-            android:text="@{String.valueOf(movie.releaseYear)}"
+            android:text="@{`Release Date: ` + String.valueOf(movie.releaseDate)}"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/text_original_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_poster"
             app:layout_constraintTop_toTopOf="@id/card_poster"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="2020" />
+            tools:text="Release Date: 2020" />
 
         <TextView
             android:id="@+id/text_original_name"

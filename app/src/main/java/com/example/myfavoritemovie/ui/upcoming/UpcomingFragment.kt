@@ -27,7 +27,7 @@ class UpcomingFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         val binding = FragmentUpcomingBinding.inflate(inflater, container, false)
         val adapter = MoviesAdapter(movieViewModel, viewLifecycleOwner)
         viewModel.search("RU")

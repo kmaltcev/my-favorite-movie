@@ -27,6 +27,6 @@ class UpcomingViewModel(
     }
 
     override fun onMovieChanged(changedMovie: ChangedMovie) {
-        _upcomingMovies.changeItem(changedMovie.oldMovie, changedMovie.newMovie)
+        _upcomingMovies?.changeItem(changedMovie.oldMovie, changedMovie.newMovie)
     }
 }

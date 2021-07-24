@@ -1,15 +1,20 @@
 package com.example.myfavoritemovie.data.converters
 
 import android.net.Uri
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.myfavoritemovie.data.source.firebase.dto.*
 import com.example.myfavoritemovie.domain.entity.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 private val storageReference by lazy { Firebase.storage.reference }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun parseMovie(snapshot: DataSnapshot): Movie =
     snapshot.getValue(FirebaseMovieDto::class.java)!!.toMovie()
 
@@ -33,7 +38,7 @@ fun buildFirebaseMovieDto(movie: Movie): FirebaseMovieDto =
             },
             episodeCount,
             seasonNumber,
-            releaseDate
+            releaseDate.toString()
         )
     }
 
@@ -70,6 +75,7 @@ private fun SaveStatus.toFirebaseConst() = when (this) {
     SaveStatus.NOT_SAVED -> SAVE_STATUS_NOT_SAVED
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun FirebaseMovieDto.toMovie(): Movie = Movie(
     name, originalName, releaseYear,
     poster?.let { buildImage(it) },
@@ -82,7 +88,7 @@ fun FirebaseMovieDto.toMovie(): Movie = Movie(
     relatedSeries?.toSeries(),
     episodeCount,
     seasonNumber,
-    releaseDate
+    releaseDate = LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
 )
 
 fun FirebaseSeriesDto.toSeries(): Series = Series(
