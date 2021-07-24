@@ -31,11 +31,7 @@ fun buildFirebaseMovieDto(movie: Movie): FirebaseMovieDto =
             externalId,
             internalId.toString(),
             dateAdded!!,
-            relatedSeries?.let {
-                buildFirebaseSeriesDto(
-                    it
-                )
-            },
+            relatedSeries?.let { buildFirebaseSeriesDto(it) },
             episodeCount,
             seasonNumber,
             releaseDate.toString()
@@ -51,7 +47,8 @@ fun buildFirebaseSeriesDto(series: Series): FirebaseSeriesDto =
             poster.toString(),
             internalId.toString(),
             externalId,
-            releaseDate
+            releaseDate.toString()
+            //releaseDate.let { it?.toString() ?: "" }
         )
     }
 
@@ -88,15 +85,18 @@ fun FirebaseMovieDto.toMovie(): Movie = Movie(
     relatedSeries?.toSeries(),
     episodeCount,
     seasonNumber,
-    releaseDate = LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
+    LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun FirebaseSeriesDto.toSeries(): Series = Series(
-    name, originalName, releaseYear,
+    name,
+    originalName,
+    releaseYear,
     poster?.let { buildImage(it) },
     UUID.fromString(internalId),
     externalId,
-    releaseDate
+    LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
 )
 
 private fun buildImage(image: String): Image = if (image.contains("http")) {

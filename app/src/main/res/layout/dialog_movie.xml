@@ -2,12 +2,17 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+
     <data>
-        <import type="android.view.View"/>
-        <import type="com.example.myfavoritemovie.domain.entity.WatchStatus"/>
+
+        <import type="android.view.View" />
+
+        <import type="com.example.myfavoritemovie.domain.entity.WatchStatus" />
+
         <variable
             name="movie"
             type="com.example.myfavoritemovie.domain.entity.Movie" />
+
         <variable
             name="viewModel"
             type="com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel" />
@@ -19,51 +24,8 @@
         android:background="?attr/colorSurface">
 
         <View
-            android:id="@+id/header_marker"
-            android:layout_width="50dp"
-            android:layout_height="4dp"
-            android:layout_marginTop="8dp"
-            android:alpha="0.6"
-            android:background="@drawable/background_header_marker"
-            android:backgroundTint="?attr/colorControlNormal"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipsNames"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="16dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_marker"
-            app:singleSelection="true"/>
-
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/pager_posters"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/header_marker" />
-
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/barrier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="pager_posters,chipsNames"/>
-
-        <View
             android:id="@+id/line_left"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:layout_marginStart="16dp"
             android:alpha="0.2"
@@ -88,11 +50,11 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@id/line_right"
             app:layout_constraintStart_toEndOf="@id/line_left"
-            app:layout_constraintTop_toBottomOf="@id/barrier" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <View
             android:id="@+id/line_right"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="1dp"
             android:layout_marginEnd="16dp"
             android:alpha="0.2"
@@ -102,127 +64,99 @@
             app:layout_constraintStart_toEndOf="@id/text_separator"
             app:layout_constraintTop_toTopOf="@id/text_separator" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_poster"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:clickable="true"
-            android:focusable="true"
-            android:foreground="?selectableItemBackground"
-            android:insetLeft="16dp"
-            android:onClick="@{() -> viewModel.searchPosters()}"
-            app:cardCornerRadius="4dp"
-            app:cardElevation="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_separator">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="50dp"
-                android:layout_height="75dp"
-                android:scaleType="centerCrop"
-                app:srcCompat="@{movie.poster}"
-                android:contentDescription="@string/empty_description" />
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <TextView
-            android:id="@+id/text_year"
-            android:layout_width="0dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:alpha="0.4"
-            android:fontFamily="sans-serif-light"
-            android:text="@{String.valueOf(movie.releaseYear)}"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/text_original_name"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/card_poster"
-            app:layout_constraintTop_toTopOf="@id/card_poster"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="2020" />
-
         <TextView
             android:id="@+id/text_original_name"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
             android:layout_marginBottom="4dp"
             android:ellipsize="end"
             android:lines="1"
             android:text="@{movie.originalName}"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/text_name"
+
+            app:layout_constraintBottom_toTopOf="@+id/card_poster"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/card_poster"
-            app:layout_constraintTop_toBottomOf="@id/text_year"
-            tools:text="Oritinal Name of Movie" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Original Name of Movie" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?selectableItemBackground"
+            android:insetLeft="16dp"
+            app:cardCornerRadius="4dp"
+            app:cardElevation="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_original_name">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="200dp"
+                android:layout_height="300dp"
+                android:contentDescription="@string/empty_description"
+                android:scaleType="centerCrop"
+                app:srcCompat="@{movie.poster}" />
+
+        </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/text_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:alpha="0.7"
-            android:ellipsize="end"
-            android:lines="1"
-            android:text="@{movie.name}"
-            android:textSize="12sp"
+            android:id="@+id/text_year"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:alpha="0.4"
+            android:fontFamily="sans-serif-light"
+            android:text="@{String.valueOf(movie.releaseYear)}"
+            android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/button_move_to_favorite_movie"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/card_poster"
-            app:layout_constraintTop_toBottomOf="@id/text_original_name"
-            tools:text="Just name of movie" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_poster"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="2020" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_move_to_favorite_movie"
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
-            android:layout_width="0dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:onClick="@{() -> viewModel.moveToFavoriteMovies(movie)}"
             android:text="@string/move_to_favorite_movie"
+            android:textAlignment="center"
             android:visibility="@{movie.watchStatus == WatchStatus.NOT_WATCHED ? View.VISIBLE : View.GONE}"
             app:icon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:layout_constraintBottom_toTopOf="@id/button_delete_movie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/card_poster" />
+            app:layout_constraintTop_toBottomOf="@id/text_year" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_change_name"
+            android:id="@+id/button_delete_movie"
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
-            android:layout_width="0dp"
-            app:layout_goneMarginTop="16dp"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.searchNames(movie)}"
-            android:text="@string/change_name"
-            app:icon="@drawable/ic_edit"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_move_to_favorite_movie" />
-
-        <com.google.android.material.button.MaterialButton
-            style="@style/Widget.MyFavoriteMovie.Button.TextButton"
-            android:layout_width="0dp"
+            android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:onClick="@{() -> viewModel.deleteMovie(movie)}"
             android:text="@string/delete_movie"
+            android:textAlignment="center"
             android:textColor="?attr/colorPrimary"
             app:icon="@drawable/ic_delete"
+            app:iconGravity="textStart"
             app:iconTint="?attr/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_change_name"
+            app:layout_constraintTop_toBottomOf="@id/button_move_to_favorite_movie"
             app:layout_goneMarginTop="16dp"
             app:rippleColor="@color/mtrl_btn_text_btn_ripple_color" />
 

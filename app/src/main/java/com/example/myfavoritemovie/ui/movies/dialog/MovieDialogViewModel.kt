@@ -63,14 +63,4 @@ class MovieDialogViewModel(
             _closeDialog.value = Event(true)
         }
     }
-
-    fun searchNames(movie: Movie) = viewModelScope.launch {
-        _names.value = Event(searchNamesForMovieAction(movie))
-    }
-
-    fun changeName(name: String) = viewModelScope.launch {
-        _selectedMovie.value?.let {
-            _selectedMovie.value = changeMovieNameAction(it, name)
-        }
-    }
 }

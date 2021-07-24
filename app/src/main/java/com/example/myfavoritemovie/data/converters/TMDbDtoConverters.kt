@@ -23,12 +23,14 @@ fun MediaDto.toMovie() = Movie(
     releaseDate = LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 fun MediaDto.toSeries() = Series(
     name,
     originalName,
     releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
     buildImage(createTMDbAbsoluteImageUri(poster)),
-    externalId = id
+    externalId = id,
+    releaseDate = LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
 )
 
 @RequiresApi(Build.VERSION_CODES.O)
@@ -40,7 +42,8 @@ fun SeasonDto.toMovie(relatedSeries: Series) = Movie(
     externalId = id,
     relatedSeries = relatedSeries,
     episodeCount = episodeCount,
-    seasonNumber = seasonNumber
+    seasonNumber = seasonNumber,
+    releaseDate = LocalDate.parse((releaseDate ?: "0000-01-01").toString(), DateTimeFormatter.ISO_DATE)
 )
 
 fun buildImage(image: Uri?) = image?.let { UriImage(it) }

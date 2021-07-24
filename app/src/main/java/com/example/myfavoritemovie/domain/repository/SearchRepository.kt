@@ -1,5 +1,7 @@
 package com.example.myfavoritemovie.domain.repository
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import com.example.myfavoritemovie.data.converters.buildImage
 import com.example.myfavoritemovie.data.converters.toMovie
 import com.example.myfavoritemovie.data.converters.toSeries
@@ -19,6 +21,7 @@ class SearchRepository(
     private val firebaseRealtimeDatabase: FirebaseRealtimeDatabase
 ) {
 
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun searchUpcomingMovies(region: String): List<Movie> {
         val tmdbUpcoming = withContext(Dispatchers.IO) {
             tmdbApiService.getUpcomingMovies(region).results
@@ -41,6 +44,7 @@ class SearchRepository(
         return firebaseUpcoming
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun searchMovies(query: String): List<Movie> {
         val medias = withContext(Dispatchers.IO) {
             tmdbApiService.multipleSearch(query).results
@@ -48,6 +52,7 @@ class SearchRepository(
         val movies = mutableListOf<Movie>()
 
         medias.forEach {
+//            movies.add(it.toMovie())
             when {
                 mediaTypeIsMovie(it.mediaType) ->
                     movies.add(it.toMovie())
@@ -68,7 +73,7 @@ class SearchRepository(
                 movies[i] = addedMovie.toMovie()
             } else {
                 movies[i].relatedSeries?.let { relatedSeries ->
-                    val addedSerie = addedSeries.find { it.externalId == relatedSeries.externalId }
+                     val addedSerie = addedSeries.find { it.externalId == relatedSeries.externalId }
                     addedSerie?.let {
                         movies[i] = movies[i].copy(
                             relatedSeries = it.toSeries()
@@ -80,11 +85,16 @@ class SearchRepository(
         return movies
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun getMovieForTV(mediaTv: MediaDto): List<Movie> {
         val series = mediaTv.toSeries()
-        val seasons =
-            withContext(Dispatchers.IO) { tmdbApiService.getTvDetails(mediaTv.id!!).seasons }
-        return seasons.map { it.toMovie(series) }
+        val seasons = withContext(Dispatchers.IO) {
+            tmdbApiService.getTvDetails(mediaTv.id!!).seasons
+        }
+        val map = seasons.map {
+            it.toMovie(series)
+        }
+        return map
     }
 
     suspend fun searchPosters(movie: Movie): List<Image> = withContext(Dispatchers.IO) {
