@@ -1,12 +1,10 @@
 package com.example.myfavoritemovie.ui.upcoming
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -30,7 +28,7 @@ class UpcomingFragment : Fragment() {
     private val movieViewModel by viewModels<MovieViewModel> { viewModelsFactory }
     private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelsFactory }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,7 +37,7 @@ class UpcomingFragment : Fragment() {
         val binding = FragmentUpcomingBinding.inflate(inflater, container, false)
         val adapter = MoviesAdapter(movieViewModel, viewLifecycleOwner)
 
-        viewModel.search("RU")
+        viewModel.search("GB")
 
         with(binding) {
             textTitle.text = getString(R.string.upcoming_title)

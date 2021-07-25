@@ -1,7 +1,5 @@
 package com.example.myfavoritemovie.ui.upcoming
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -21,7 +19,7 @@ class UpcomingViewModel(
     private val _upcomingMovies = MutableLiveData<List<Movie>>()
     val upcomingMovies: LiveData<List<Movie>> = _upcomingMovies
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     fun search(query: String) = viewModelScope.launch {
         _upcomingMovies.value = null
         if (query.isNotEmpty()) {

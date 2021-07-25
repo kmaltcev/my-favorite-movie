@@ -18,5 +18,7 @@ data class FirebaseMovieDto(
     var episodeCount: Int? = null,
     var seasonNumber: Int? = null,
 
-    var releaseDate: String = ""
+    var releaseDate: String? = "",
+    val overview: String = "",
+    val vote_average: Float = 0.0f
 )

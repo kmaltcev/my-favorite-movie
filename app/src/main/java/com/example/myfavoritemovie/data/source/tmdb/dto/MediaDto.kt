@@ -3,7 +3,6 @@ package com.example.myfavoritemovie.data.source.tmdb.dto
 import com.google.gson.annotations.SerializedName
 
 data class MediaDto(
-
     val id: Int? = null,
 
     @SerializedName("media_type")
@@ -16,8 +15,14 @@ data class MediaDto(
     val originalName: String = "",
 
     @SerializedName("release_date", alternate = ["first_air_date"])
-    val releaseDate: String? = null,
+    val releaseDate: String? = "",
 
     @SerializedName("poster_path")
-    val poster: String? = null
+    val poster: String? = null,
+
+    @SerializedName("overview")
+    val overview: String = "",
+
+    @SerializedName("vote_average")
+    val vote_average: Float = 0.0f
 )

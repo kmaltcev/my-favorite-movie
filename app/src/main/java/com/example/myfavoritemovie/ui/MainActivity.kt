@@ -2,12 +2,10 @@ package com.example.myfavoritemovie.ui
 
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
@@ -27,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val filter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
     private lateinit var bottomNavigationView: BottomNavigationView
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_MyFavoriteMovie)
@@ -66,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onStart() {
         super.onStart()
         if (auth.currentUser == null) {

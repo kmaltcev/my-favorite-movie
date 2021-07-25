@@ -8,5 +8,7 @@ data class FirebaseSeriesDto(
 
     var internalId: String = "",
     var externalId: Int? = null,
-    var releaseDate: String = ""
+    var releaseDate: String? = "",
+    val overview: String = "",
+    val vote_average: Float = 0.0f
 )

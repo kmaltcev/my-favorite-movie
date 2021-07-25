@@ -6,10 +6,8 @@ import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import android.os.IBinder
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.navigation.NavDeepLinkBuilder
 import com.example.myfavoritemovie.R
 import com.example.myfavoritemovie.ui.MainActivity
@@ -19,7 +17,7 @@ class UpcomingMoviesReceiver : Service() {
         return null
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreate() {
         Log.wtf("MY_APP_SERVICE", "The service has been created")
         val notification = createNotification()
@@ -27,7 +25,7 @@ class UpcomingMoviesReceiver : Service() {
         super.onCreate()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     private fun createNotification(): Notification {
 
 

@@ -1,53 +1,55 @@
 package com.example.myfavoritemovie.data.converters
 
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.myfavoritemovie.data.source.firebase.dto.*
 import com.example.myfavoritemovie.domain.entity.*
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 
 private val storageReference by lazy { Firebase.storage.reference }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun parseMovie(snapshot: DataSnapshot): Movie =
     snapshot.getValue(FirebaseMovieDto::class.java)!!.toMovie()
+
 
 fun buildFirebaseMovieDto(movie: Movie): FirebaseMovieDto =
     with(movie) {
         FirebaseMovieDto(
-            name,
-            originalName,
-            releaseYear,
-            poster.toString(),
-            movieType.toFirebaseConst(),
-            watchStatus.toFirebaseConst(),
-            saveStatus.toFirebaseConst(),
-            externalId,
-            internalId.toString(),
-            dateAdded!!,
-            relatedSeries?.let { buildFirebaseSeriesDto(it) },
-            episodeCount,
-            seasonNumber,
-            releaseDate.toString()
+            name = name,
+            originalName = originalName,
+            releaseYear = releaseYear,
+            poster = poster.toString(),
+            movieType = movieType.toFirebaseConst(),
+            watchStatus = watchStatus.toFirebaseConst(),
+            saveStatus = saveStatus.toFirebaseConst(),
+            externalId = externalId,
+            internalId = internalId.toString(),
+            dateAdded = dateAdded!!,
+            relatedSeries = relatedSeries?.let { buildFirebaseSeriesDto(it) },
+            episodeCount = episodeCount,
+            seasonNumber = seasonNumber,
+            releaseDate = formatDate(releaseDate),
+            overview = overview ?: "",
+            vote_average = vote_average
         )
     }
+
 
 fun buildFirebaseSeriesDto(series: Series): FirebaseSeriesDto =
     with(series) {
         FirebaseSeriesDto(
-            name,
-            originalName,
-            releaseYear,
-            poster.toString(),
-            internalId.toString(),
-            externalId,
-            releaseDate.toString()
+            name = name,
+            originalName = originalName,
+            releaseYear = releaseYear,
+            poster = poster.toString(),
+            internalId = internalId.toString(),
+            externalId = externalId,
+            releaseDate = formatDate(releaseDate),
+            overview = overview,
+            vote_average = vote_average
         )
     }
 
@@ -71,31 +73,37 @@ private fun SaveStatus.toFirebaseConst() = when (this) {
     SaveStatus.NOT_SAVED -> SAVE_STATUS_NOT_SAVED
 }
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun FirebaseMovieDto.toMovie(): Movie = Movie(
-    name, originalName, releaseYear,
-    poster?.let { buildImage(it) },
-    movieType.toMovieType(),
-    watchStatus.toWatchStatus(),
-    saveStatus.toSaveStatus(),
-    externalId,
-    UUID.fromString(internalId),
-    dateAdded,
-    relatedSeries?.toSeries(),
-    episodeCount,
-    seasonNumber,
-    LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
+    name = name,
+    originalName = originalName,
+    releaseYear = releaseYear,
+    poster = poster?.let { buildImage(it) },
+    movieType = movieType.toMovieType(),
+    watchStatus = watchStatus.toWatchStatus(),
+    saveStatus = saveStatus.toSaveStatus(),
+    externalId = externalId,
+    internalId = UUID.fromString(internalId),
+    dateAdded = dateAdded,
+    relatedSeries = relatedSeries?.toSeries(),
+    episodeCount = episodeCount,
+    seasonNumber = seasonNumber,
+    releaseDate = formatDate(releaseDate),
+    overview = overview,
+    vote_average = vote_average
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun FirebaseSeriesDto.toSeries(): Series = Series(
-    name,
-    originalName,
-    releaseYear,
-    poster?.let { buildImage(it) },
-    UUID.fromString(internalId),
-    externalId,
-    LocalDate.parse(releaseDate, DateTimeFormatter.ISO_DATE)
+    name = name,
+    originalName = originalName,
+    releaseYear = releaseYear,
+    poster = poster?.let { buildImage(it) },
+    internalId = UUID.fromString(internalId),
+    externalId = externalId,
+    releaseDate = formatDate(releaseDate),
+    overview = overview,
+    vote_average = vote_average
 )
 
 private fun buildImage(image: String): Image = if (image.contains("http")) {

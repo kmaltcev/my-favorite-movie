@@ -1,8 +1,6 @@
 package com.example.myfavoritemovie.data.converters
 
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.myfavoritemovie.data.source.tmdb.createTMDbAbsoluteImageUri
 import com.example.myfavoritemovie.data.source.tmdb.dto.MediaDto
 import com.example.myfavoritemovie.data.source.tmdb.dto.SeasonDto
@@ -12,47 +10,57 @@ import com.example.myfavoritemovie.domain.entity.Series
 import com.example.myfavoritemovie.domain.entity.UriImage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
+import java.time.format.FormatStyle
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun MediaDto.toMovie() = Movie(
-    name,
-    originalName,
-    releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
-    buildImage(createTMDbAbsoluteImageUri(poster)),
+    name = name,
+    originalName = originalName,
+    releaseYear = releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
+    poster = buildImage(createTMDbAbsoluteImageUri(poster)),
     externalId = id,
-    releaseDate = releaseDate.let {
-        if (it?.length?.compareTo(0)!! > 0) LocalDate.parse(it, DateTimeFormatter.ISO_DATE)
-        else LocalDate.parse("0000-01-01", DateTimeFormatter.ISO_DATE)
-    }
+    releaseDate = formatDate(releaseDate),
+    overview = overview,
+    vote_average = vote_average
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 fun MediaDto.toSeries() = Series(
-    name,
-    originalName,
-    releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
-    buildImage(createTMDbAbsoluteImageUri(poster)),
+    name = name,
+    originalName = originalName,
+    releaseYear = releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
+    poster = buildImage(createTMDbAbsoluteImageUri(poster)),
     externalId = id,
-    releaseDate = releaseDate.let {
-        if (it?.length?.compareTo(0)!! > 0) LocalDate.parse(it, DateTimeFormatter.ISO_DATE)
-        else LocalDate.parse("0000-01-01", DateTimeFormatter.ISO_DATE)
-    }
+    releaseDate = formatDate(releaseDate),
+    overview = overview,
+    vote_average = vote_average
 )
 
-@RequiresApi(Build.VERSION_CODES.O)
 fun SeasonDto.toMovie(relatedSeries: Series) = Movie(
-    name,
-    relatedSeries.originalName,
-    releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
-    buildImage(createTMDbAbsoluteImageUri(poster)),
+    name = name,
+    originalName = relatedSeries.originalName,
+    releaseYear = releaseDate?.let { getYearFromTMDbDate(it) } ?: 0,
+    poster = buildImage(createTMDbAbsoluteImageUri(poster)),
     externalId = id,
     relatedSeries = relatedSeries,
     episodeCount = episodeCount,
     seasonNumber = seasonNumber,
-    releaseDate = LocalDate.parse(
-        (releaseDate ?: "0000-01-01").toString(),
-        DateTimeFormatter.ISO_DATE
-    )
+    releaseDate = formatDate(releaseDate),
+    overview = overview,
+    vote_average = vote_average
 )
 
 fun buildImage(image: Uri?) = image?.let { UriImage(it) }
+
+fun formatDate(date: String?): String? {
+    return try {
+        val localDate = LocalDate.parse(
+            if (date.isNullOrEmpty()) "0000-01-01" else date,
+            DateTimeFormatter.ISO_DATE
+        )
+        localDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL))
+    }
+    catch (e: DateTimeParseException) {
+        date
+    }
+}

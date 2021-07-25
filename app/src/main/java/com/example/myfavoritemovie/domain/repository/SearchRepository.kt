@@ -1,7 +1,5 @@
 package com.example.myfavoritemovie.domain.repository
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.myfavoritemovie.data.converters.toMovie
 import com.example.myfavoritemovie.data.converters.toSeries
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
@@ -18,7 +16,6 @@ class SearchRepository(
     private val firebaseRealtimeDatabase: FirebaseRealtimeDatabase
 ) {
 
-    @RequiresApi(Build.VERSION_CODES.O)
     suspend fun searchUpcomingMovies(region: String): List<Movie> {
         val tmdbUpcoming = withContext(Dispatchers.IO) {
             tmdbApiService.getUpcomingMovies(region).results
@@ -33,7 +30,9 @@ class SearchRepository(
             .filter { it.externalId != null }
 
         for (i in firebaseUpcoming.indices) {
-            val addedMovie = upcomingMovies.find { it.externalId == firebaseUpcoming[i].externalId }
+            val addedMovie = upcomingMovies.find {
+                it.externalId == firebaseUpcoming[i].externalId
+            }
             if (addedMovie != null) {
                 firebaseUpcoming[i] = addedMovie.toMovie()
             }
@@ -41,7 +40,7 @@ class SearchRepository(
         return firebaseUpcoming
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     suspend fun searchMovies(query: String): List<Movie> {
         val medias = withContext(Dispatchers.IO) {
             tmdbApiService.multipleSearch(query).results
@@ -81,7 +80,6 @@ class SearchRepository(
         return movies
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private suspend fun getMovieForTV(mediaTv: MediaDto): List<Movie> {
         val series = mediaTv.toSeries()
         val seasons = withContext(Dispatchers.IO) {

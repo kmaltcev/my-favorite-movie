@@ -1,11 +1,8 @@
 package com.example.myfavoritemovie.domain.entity
 
-import android.os.Build
-import androidx.annotation.RequiresApi
-import java.time.LocalDate
 import java.util.*
 
-@RequiresApi(Build.VERSION_CODES.O)
+
 data class Movie(
     val name: String,
     val originalName: String,
@@ -23,5 +20,7 @@ data class Movie(
     val relatedSeries: Series? = null,
     val episodeCount: Int? = null,
     val seasonNumber: Int? = null,
-    val releaseDate: LocalDate? = null
+    val releaseDate: String? = "",
+    val overview: String? = null,
+    val vote_average: Float = 0.0f
 )

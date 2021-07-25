@@ -11,7 +11,6 @@ import androidx.lifecycle.observe
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.databinding.DialogMovieBinding
 import com.example.myfavoritemovie.ui.EventObserver
-import com.example.myfavoritemovie.ui.ext.hide
 
 class MovieDialog : DialogFragment() {
     private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> {
@@ -33,7 +32,6 @@ class MovieDialog : DialogFragment() {
 
             movieDialogViewModel.selectedMovie.observe(viewLifecycleOwner) {
                 TransitionManager.beginDelayedTransition(requireView().parent as ViewGroup)
-                groupLineSeparator.hide()
                 movie = it
             }
 

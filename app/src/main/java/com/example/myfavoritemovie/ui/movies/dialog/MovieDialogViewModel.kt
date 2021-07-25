@@ -22,6 +22,9 @@ class MovieDialogViewModel(
     private val _selectedMovie = MutableLiveData<Movie>()
     val selectedMovie: LiveData<Movie> = _selectedMovie
 
+    private val _buttonClicked = MutableLiveData<Boolean>()
+    val buttonClicked: LiveData<Boolean> = _buttonClicked
+
     private val _closeDialog = MutableLiveData<Event<Boolean>>()
     val closeDialog: LiveData<Event<Boolean>> = _closeDialog
 
@@ -30,22 +33,31 @@ class MovieDialogViewModel(
     }
 
     fun deleteMovie(movie: Movie) = viewModelScope.launch {
+        _buttonClicked.value = true
         deleteMovieAction(movie)
         _closeDialog.value = Event(true)
+        _buttonClicked.value = false
+
     }
 
     fun addToFavoriteMovies(movie: Movie) = viewModelScope.launch {
+        _buttonClicked.value = true
         addFavoriteMoviesAction(movie)
         _closeDialog.value = Event(true)
+        _buttonClicked.value = false
     }
 
     fun addToNeedToWatchMovies(movie: Movie) = viewModelScope.launch {
+        _buttonClicked.value = true
         addNeedToWatchMovieAction(movie)
         _closeDialog.value = Event(true)
+        _buttonClicked.value = false
     }
 
     fun moveToFavoriteMovies(movie: Movie) = viewModelScope.launch {
+        _buttonClicked.value = true
         moveToFavoriteMoviesAction(movie)
         _closeDialog.value = Event(true)
+        _buttonClicked.value = false
     }
 }

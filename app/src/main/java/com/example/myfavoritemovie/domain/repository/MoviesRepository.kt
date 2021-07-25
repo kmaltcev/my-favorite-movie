@@ -19,17 +19,16 @@ class MoviesRepository(
         putMovieUse(movie, firebaseRealtimeDatabase::putFavoriteMovie)
     }
 
+
     suspend fun addNeedToWatchMovie(movie: Movie) {
         putMovieUse(movie, firebaseRealtimeDatabase::putNeedToWatchMovie)
     }
 
+
     suspend fun updateFavoriteMovie(updatedMovie: Movie) {
         putMovieUse(updatedMovie, firebaseRealtimeDatabase::putFavoriteMovie)
     }
-//
-//    suspend fun updateNeedToWatchMovie(updatedMovie: Movie) {
-//        putMovieUse(updatedMovie, firebaseRealtimeDatabase::putNeedToWatchMovie)
-//    }
+
 
     private suspend fun putMovieUse(movie: Movie, putMovie: (FirebaseMovieDto) -> Unit) {
 
@@ -75,10 +74,12 @@ class MoviesRepository(
     }
 
 
+
     suspend fun deleteFavoriteMovie(movie: Movie) {
         firebaseRealtimeDatabase.removeFavoriteMovie(buildFirebaseMovieDto(movie))
         deletePoster(movie)
     }
+
 
     suspend fun deleteNeedToWatchMovie(movie: Movie) {
         firebaseRealtimeDatabase.removeNeedToWatchMovie(buildFirebaseMovieDto(movie))

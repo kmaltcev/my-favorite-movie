@@ -48,18 +48,18 @@
             android:layout_width="0dp"
             android:layout_height="21dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:alpha="0.4"
+            android:layout_marginTop="8dp"
+            android:alpha="0.6"
             android:fontFamily="sans-serif-light"
-            android:text="@{`Release Date: ` + String.valueOf(movie.releaseDate)}"
+            android:text="@{String.valueOf(movie.releaseDate)}"
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/text_original_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_poster"
-            app:layout_constraintTop_toTopOf="@id/card_poster"
+            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="Release Date: 2020" />
+            tools:text="2020-01-01" />
 
         <TextView
             android:id="@+id/text_original_name"
@@ -75,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_poster"
             app:layout_constraintTop_toBottomOf="@id/text_year"
-            tools:text="Oritinal Name of Movie" />
+            tools:text="Original Name of Movie" />
 
         <TextView
             android:id="@+id/text_name"
@@ -89,49 +89,23 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_poster"
             app:layout_constraintTop_toBottomOf="@id/text_original_name"
+            app:layout_constraintBottom_toTopOf="@id/text_overview"
             tools:text="Just name of movie" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/text_description"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginEnd="16dp"-->
-<!--            android:alpha="0.7"-->
-<!--            android:text="@{movie}"-->
-<!--            android:textSize="12sp"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toEndOf="@id/card_poster"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/text_name"-->
-<!--            tools:text="Just name of movie" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/button_add_to_favorite_movie"-->
-<!--            style="@style/Widget.MyFavoriteMovie.Button.Icon"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:layout_marginBottom="16dp"-->
-<!--            app:icon="@drawable/ic_add"-->
-<!--            android:visibility="@{movie.internalId == null ? View.VISIBLE : movie.externalId == null ? View.INVISIBLE : View.GONE}"-->
-<!--            android:onClick="@{() -> viewModel.addNeedToWatchMovie(movie)}"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/card_poster"-->
-<!--            app:layout_constraintStart_toEndOf="@id/card_poster"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/text_name" />-->
-
-<!--        <com.google.android.material.button.MaterialButton-->
-<!--            android:id="@+id/button_add"-->
-<!--            style="@style/Widget.MyFavoriteMovie.Button.Icon"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="16dp"-->
-<!--            app:icon="@drawable/ic_check"-->
-<!--            android:visibility="@{movie.internalId == null ? View.VISIBLE : View.GONE}"-->
-<!--            android:onClick="@{() -> viewModel.addFavoriteMovie(movie)}"-->
-<!--            app:layout_constraintStart_toEndOf="@id/button_add_to_favorite_movie"-->
-<!--            app:layout_constraintTop_toTopOf="@id/button_add_to_favorite_movie"-->
-<!--            app:layout_constraintBottom_toBottomOf="@id/button_add_to_favorite_movie"/>-->
+        <TextView
+            android:id="@+id/text_overview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{movie.overview}"
+            android:textSize="13sp"
+            android:ellipsize="end"
+            android:maxLines="7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/card_poster"
+            app:layout_constraintTop_toBottomOf="@id/text_name"
+            tools:text="@string/lorem_ipsum" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

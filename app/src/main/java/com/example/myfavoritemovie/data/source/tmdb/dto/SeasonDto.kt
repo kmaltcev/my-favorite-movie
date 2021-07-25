@@ -16,5 +16,11 @@ data class SeasonDto(
     val seasonNumber: Int,
 
     @SerializedName("poster_path")
-    val poster: String? = null
+    val poster: String? = null,
+
+    @SerializedName("overview")
+    val overview: String = "",
+
+    @SerializedName("vote_average")
+    val vote_average: Float = 0.0f
 )

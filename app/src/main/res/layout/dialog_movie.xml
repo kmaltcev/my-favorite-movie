@@ -2,17 +2,12 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-
     <data>
-
         <import type="android.view.View" />
-
         <import type="com.example.myfavoritemovie.domain.entity.WatchStatus" />
-
         <variable
             name="movie"
             type="com.example.myfavoritemovie.domain.entity.Movie" />
-
         <variable
             name="viewModel"
             type="com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel" />
@@ -24,57 +19,16 @@
         android:background="?attr/colorSurface"
         android:paddingBottom="16dp">
 
-        <View
-            android:id="@+id/line_left"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginStart="16dp"
-            android:alpha="0.2"
-            android:background="?colorOnSurface"
-            app:layout_constraintBottom_toBottomOf="@id/text_separator"
-            app:layout_constraintEnd_toStartOf="@id/text_separator"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/text_separator" />
-
-        <TextView
-            android:id="@+id/text_separator"
-            android:layout_width="wrap_content"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:alpha="0.4"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:text="@string/select_poster"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@id/line_right"
-            app:layout_constraintStart_toEndOf="@id/line_left"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <View
-            android:id="@+id/line_right"
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginEnd="16dp"
-            android:alpha="0.2"
-            android:background="?colorOnSurface"
-            app:layout_constraintBottom_toBottomOf="@id/text_separator"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/text_separator"
-            app:layout_constraintTop_toTopOf="@id/text_separator" />
-
         <TextView
             android:id="@+id/text_original_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="12dp"
             android:layout_marginBottom="4dp"
             android:ellipsize="end"
             android:lines="1"
             android:text="@{movie.originalName}"
-            android:textSize="16sp"
+            android:textSize="20sp"
 
             app:layout_constraintBottom_toTopOf="@+id/card_poster"
             app:layout_constraintEnd_toEndOf="parent"
@@ -114,20 +68,37 @@
             android:layout_marginEnd="0dp"
             android:alpha="0.4"
             android:fontFamily="sans-serif-light"
-            android:text="@{String.valueOf(movie.releaseYear)}"
+            android:text="@{String.valueOf(movie.releaseDate)}"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_poster"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="2020" />
+            tools:text="2020-01-01" />
+
+        <TextView
+            android:id="@+id/text_overview"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@{movie.overview}"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toTopOf="@id/button_move_to_favorite_movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/text_year"
+            tools:text="@string/lorem_ipsum"
+            tools:textSize="0sp" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_move_to_favorite_movie"
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:alpha="@{viewModel.buttonClicked ? 0.1f : 1.0f}"
+            android:enabled="@{!!!viewModel.buttonClicked}"
             android:onClick="@{() -> viewModel.moveToFavoriteMovies(movie)}"
             android:text="@string/move_to_favorite_movie"
             android:textAlignment="center"
@@ -136,7 +107,7 @@
             app:iconGravity="textStart"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_year"
+            app:layout_constraintTop_toBottomOf="@id/text_overview"
             app:layout_goneMarginTop="16dp" />
 
         <com.google.android.material.button.MaterialButton
@@ -144,6 +115,8 @@
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:alpha="@{viewModel.buttonClicked ? 0.1f : 1.0f}"
+            android:enabled="@{!!!viewModel.buttonClicked}"
             android:onClick="@{() -> viewModel.addToFavoriteMovies(movie)}"
             android:text="@string/add_to_favorite_movie"
             android:textAlignment="center"
@@ -159,6 +132,8 @@
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:alpha="@{viewModel.buttonClicked ? 0.1f : 1.0f}"
+            android:enabled="@{!!!viewModel.buttonClicked}"
             android:onClick="@{() -> viewModel.addToNeedToWatchMovies(movie)}"
             android:text="@string/add_to_need_to_watch_movie"
             android:textAlignment="center"
@@ -177,6 +152,8 @@
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:alpha="@{viewModel.buttonClicked ? 0.1f : 1.0f}"
+            android:enabled="@{!!!viewModel.buttonClicked}"
             android:onClick="@{() -> viewModel.deleteMovie(movie)}"
             android:text="@string/delete_movie"
             android:textAlignment="center"
@@ -189,13 +166,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_add_to_need_to_watch_movie"
             app:rippleColor="@color/mtrl_btn_text_btn_ripple_color" />
-
-        <androidx.constraintlayout.widget.Group
-            android:id="@+id/group_line_separator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            app:constraint_referenced_ids="text_separator,line_left,line_right" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

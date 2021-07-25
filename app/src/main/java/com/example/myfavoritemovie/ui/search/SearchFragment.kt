@@ -1,12 +1,10 @@
 package com.example.myfavoritemovie.ui.search
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
@@ -28,7 +26,7 @@ class SearchFragment : Fragment() {
     private val movieViewModel by viewModels<MovieViewModel> { viewModelsFactory }
     private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelsFactory }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
