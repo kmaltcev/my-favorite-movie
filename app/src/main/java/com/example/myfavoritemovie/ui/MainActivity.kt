@@ -5,13 +5,13 @@ import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
+import android.view.Menu
+import android.view.MenuItem
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.myfavoritemovie.R
-import com.example.myfavoritemovie.data.service.Actions
 import com.example.myfavoritemovie.data.service.NetworkChangeReceiver
 import com.example.myfavoritemovie.data.service.UpcomingMoviesReceiver
 import com.example.myfavoritemovie.databinding.ActivityMainBinding
@@ -21,9 +21,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlin.system.exitProcess
 
-
 class MainActivity : AppCompatActivity() {
-
     private lateinit var auth: FirebaseAuth
     private val receiver = NetworkChangeReceiver()
     private val filter = IntentFilter("android.net.conn.CONNECTIVITY_CHANGE")
@@ -40,9 +38,23 @@ class MainActivity : AppCompatActivity() {
         Log.wtf("MY_APP_FIREBASE_USER", "${auth.currentUser}")
         setUpNavigation()
         Intent(this, UpcomingMoviesReceiver::class.java).also {
-            it.action = Actions.START.name
+            it.action = "START"
             startForegroundService(it)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.top_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.exit -> {
+                exitProcess(-1)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setUpNavigation() {
@@ -70,9 +82,5 @@ class MainActivity : AppCompatActivity() {
     override fun onPause() {
         unregisterReceiver(receiver)
         super.onPause()
-    }
-
-    fun getExit(view: View) {
-        exitProcess(-1)
     }
 }

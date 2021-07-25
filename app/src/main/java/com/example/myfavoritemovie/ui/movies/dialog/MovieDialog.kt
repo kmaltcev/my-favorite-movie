@@ -8,19 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
-import com.example.myfavoritemovie.R
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.databinding.DialogMovieBinding
 import com.example.myfavoritemovie.ui.EventObserver
 import com.example.myfavoritemovie.ui.ext.hide
-import com.example.myfavoritemovie.ui.ext.show
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.chip.Chip
 
 class MovieDialog : DialogFragment() {
-
-    private val viewModel by activityViewModels<MovieDialogViewModel> {
+    private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> {
         ViewModelFactory(
             requireContext()
         )
@@ -32,35 +26,22 @@ class MovieDialog : DialogFragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = DialogMovieBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner = viewLifecycleOwner
-        binding.viewModel = viewModel
 
-        val postersAdapter = PostersAdapter(viewModel, viewLifecycleOwner)
+        with(binding) {
+            lifecycleOwner = viewLifecycleOwner
+            viewModel = movieDialogViewModel
 
-        viewModel.selectedMovie.observe(viewLifecycleOwner) {
-            TransitionManager.beginDelayedTransition(requireView().parent as ViewGroup)
-            binding.groupLineSeparator.hide()
-            binding.movie = it
+            movieDialogViewModel.selectedMovie.observe(viewLifecycleOwner) {
+                TransitionManager.beginDelayedTransition(requireView().parent as ViewGroup)
+                groupLineSeparator.hide()
+                movie = it
+            }
+
+            movieDialogViewModel.closeDialog.observe(viewLifecycleOwner, EventObserver {
+                dismiss()
+            })
+
+            return root
         }
-
-        viewModel.posters.observe(viewLifecycleOwner, EventObserver {
-            postersAdapter.submitList(it)
-            TransitionManager.beginDelayedTransition(requireView().parent as ViewGroup)
-            binding.textSeparator.text = getString(R.string.select_poster)
-            binding.groupLineSeparator.show()
-        })
-
-        viewModel.names.observe(viewLifecycleOwner, EventObserver { names ->
-
-            TransitionManager.beginDelayedTransition(requireView().parent as ViewGroup)
-            binding.textSeparator.text = getString(R.string.select_name)
-            binding.groupLineSeparator.show()
-        })
-
-        viewModel.closeDialog.observe(viewLifecycleOwner, EventObserver {
-            dismiss()
-        })
-
-        return binding.root
     }
 }

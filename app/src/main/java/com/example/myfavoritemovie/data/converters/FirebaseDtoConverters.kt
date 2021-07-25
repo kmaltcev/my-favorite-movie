@@ -48,7 +48,6 @@ fun buildFirebaseSeriesDto(series: Series): FirebaseSeriesDto =
             internalId.toString(),
             externalId,
             releaseDate.toString()
-            //releaseDate.let { it?.toString() ?: "" }
         )
     }
 

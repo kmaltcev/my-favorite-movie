@@ -86,39 +86,52 @@
             android:alpha="0.7"
             android:text="@{movie.name}"
             android:textSize="12sp"
-            app:layout_constraintBottom_toTopOf="@+id/button_add_to_favorite_movie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/card_poster"
             app:layout_constraintTop_toBottomOf="@id/text_original_name"
             tools:text="Just name of movie" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_add_to_favorite_movie"
-            style="@style/Widget.MyFavoriteMovie.Button.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            app:icon="@drawable/ic_add"
-            android:visibility="@{movie.internalId == null ? View.VISIBLE : movie.externalId == null ? View.INVISIBLE : View.GONE}"
-            android:onClick="@{() -> viewModel.addNeedToWatchMovie(movie)}"
-            app:layout_constraintBottom_toBottomOf="@id/card_poster"
-            app:layout_constraintStart_toEndOf="@id/card_poster"
-            app:layout_constraintTop_toBottomOf="@id/text_name" />
+<!--        <TextView-->
+<!--            android:id="@+id/text_description"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginEnd="16dp"-->
+<!--            android:alpha="0.7"-->
+<!--            android:text="@{movie}"-->
+<!--            android:textSize="12sp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@id/card_poster"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/text_name"-->
+<!--            tools:text="Just name of movie" />-->
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/button_add"
-            style="@style/Widget.MyFavoriteMovie.Button.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            app:icon="@drawable/ic_check"
-            android:visibility="@{movie.internalId == null ? View.VISIBLE : View.GONE}"
-            android:onClick="@{() -> viewModel.addFavoriteMovie(movie)}"
-            app:layout_constraintStart_toEndOf="@id/button_add_to_favorite_movie"
-            app:layout_constraintTop_toTopOf="@id/button_add_to_favorite_movie"
-            app:layout_constraintBottom_toBottomOf="@id/button_add_to_favorite_movie"/>
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/button_add_to_favorite_movie"-->
+<!--            style="@style/Widget.MyFavoriteMovie.Button.Icon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:layout_marginBottom="16dp"-->
+<!--            app:icon="@drawable/ic_add"-->
+<!--            android:visibility="@{movie.internalId == null ? View.VISIBLE : movie.externalId == null ? View.INVISIBLE : View.GONE}"-->
+<!--            android:onClick="@{() -> viewModel.addNeedToWatchMovie(movie)}"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/card_poster"-->
+<!--            app:layout_constraintStart_toEndOf="@id/card_poster"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/text_name" />-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--            android:id="@+id/button_add"-->
+<!--            style="@style/Widget.MyFavoriteMovie.Button.Icon"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="16dp"-->
+<!--            app:icon="@drawable/ic_check"-->
+<!--            android:visibility="@{movie.internalId == null ? View.VISIBLE : View.GONE}"-->
+<!--            android:onClick="@{() -> viewModel.addFavoriteMovie(movie)}"-->
+<!--            app:layout_constraintStart_toEndOf="@id/button_add_to_favorite_movie"-->
+<!--            app:layout_constraintTop_toTopOf="@id/button_add_to_favorite_movie"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/button_add_to_favorite_movie"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

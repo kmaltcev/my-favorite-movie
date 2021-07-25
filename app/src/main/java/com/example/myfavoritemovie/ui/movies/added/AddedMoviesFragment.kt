@@ -25,10 +25,10 @@ import com.google.firebase.database.Query
 
 abstract class AddedMoviesFragment : Fragment() {
 
-    private val viewModelFactory by lazy { ViewModelFactory(requireContext()) }
+    private val viewModelsFactory by lazy { ViewModelFactory(requireContext()) }
 
-    private val viewModel by viewModels<MovieViewModel> { viewModelFactory }
-    private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelFactory }
+    private val viewModel by viewModels<MovieViewModel> { viewModelsFactory }
+    private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelsFactory }
 
     private val adapter by lazy { createMoviesAdapter() }
 

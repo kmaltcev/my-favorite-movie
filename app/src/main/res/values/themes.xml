@@ -1,25 +1,9 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Theme.MyFavoriteMovie" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:statusBarColor">?android:colorBackground</item>
+<resources>
+    <style name="Theme.MyFavoriteMovie" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:statusBarColor">@color/color_action_bar</item>
         <item name="android:navigationBarColor">?android:colorBackground</item>
 
         <item name="colorPrimary">@color/color_primary</item>
         <item name="android:colorEdgeEffect">?colorSurface</item>
-
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.MyFavoriteMovie.BottomSheetDialog</item>
     </style>
-
-
-    <style name="ThemeOverlay.MyFavoriteMovie.BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
-        <item name="android:windowIsFloating">false</item>
-        <item name="android:windowAnimationStyle">@style/Animation.MaterialComponents.BottomSheetDialog</item>
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
-        <item name="android:navigationBarDividerColor" tools:ignore="NewApi">@android:color/transparent</item>
-
-        <item name="bottomSheetStyle">@style/Widget.MyFavoriteMovie.BottomSheetDialog</item>
-    </style>
-
 </resources>

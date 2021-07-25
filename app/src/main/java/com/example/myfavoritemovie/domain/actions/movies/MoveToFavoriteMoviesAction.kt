@@ -1,5 +1,6 @@
 package com.example.myfavoritemovie.domain.actions.movies
 
+import android.util.Log
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
 import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.domain.entity.WatchStatus
@@ -12,7 +13,11 @@ class MoveToFavoriteMoviesAction(
 ) {
 
     suspend operator fun invoke(movie: Movie) {
-        moviesRepository.deleteNeedToWatchMovie(movie)
+        try {
+            moviesRepository.deleteNeedToWatchMovie(movie)
+        } catch (e: NullPointerException) {
+            Log.wtf("MY_APP_DELETE", "${movie.name} not removed")
+        }
         val updatedMovie = movie.copy(
             watchStatus = WatchStatus.WATCHED,
             dateAdded = generateDateAdded()

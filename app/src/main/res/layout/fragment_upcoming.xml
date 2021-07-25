@@ -16,13 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/layout_header"
-            layout="@layout/screen_header"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
             android:id="@+id/text_title"
             android:layout_width="0dp"
@@ -34,7 +27,7 @@
             android:textSize="36sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout_header"
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Coming Next Week" />
 
         <androidx.recyclerview.widget.RecyclerView

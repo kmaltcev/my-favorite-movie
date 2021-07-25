@@ -21,7 +21,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorSurface">
+        android:background="?attr/colorSurface"
+        android:paddingBottom="16dp">
 
         <View
             android:id="@+id/line_left"
@@ -86,7 +87,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:clickable="true"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
             android:insetLeft="16dp"
@@ -116,7 +116,6 @@
             android:fontFamily="sans-serif-light"
             android:text="@{String.valueOf(movie.releaseYear)}"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/button_move_to_favorite_movie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/card_poster"
@@ -132,32 +131,63 @@
             android:onClick="@{() -> viewModel.moveToFavoriteMovies(movie)}"
             android:text="@string/move_to_favorite_movie"
             android:textAlignment="center"
-            android:visibility="@{movie.watchStatus == WatchStatus.NOT_WATCHED ? View.VISIBLE : View.GONE}"
+            android:visibility="@{movie.internalId == null ? View.GONE : movie.watchStatus == WatchStatus.NOT_WATCHED ? View.VISIBLE : View.GONE}"
             app:icon="@drawable/ic_check"
             app:iconGravity="textStart"
-            app:layout_constraintBottom_toTopOf="@id/button_delete_movie"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/text_year" />
+            app:layout_constraintTop_toBottomOf="@id/text_year"
+            app:layout_goneMarginTop="16dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add_to_favorite_movie"
+            style="@style/Widget.MyFavoriteMovie.Button.TextButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.addToFavoriteMovies(movie)}"
+            android:text="@string/add_to_favorite_movie"
+            android:textAlignment="center"
+            android:visibility="@{movie.internalId != null ? View.GONE : View.VISIBLE}"
+            app:icon="@drawable/ic_check"
+            app:iconGravity="textStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_move_to_favorite_movie" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button_add_to_need_to_watch_movie"
+            style="@style/Widget.MyFavoriteMovie.Button.TextButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.addToNeedToWatchMovies(movie)}"
+            android:text="@string/add_to_need_to_watch_movie"
+            android:textAlignment="center"
+            android:textColor="?attr/colorPrimaryDark"
+            android:visibility="@{movie.internalId != null ? View.GONE : View.VISIBLE}"
+            app:icon="@drawable/ic_add"
+            app:iconGravity="textStart"
+            app:iconTint="?attr/colorPrimaryDark"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/button_add_to_favorite_movie"
+            app:rippleColor="@color/mtrl_btn_text_btn_ripple_color" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_delete_movie"
             style="@style/Widget.MyFavoriteMovie.Button.TextButton"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
             android:onClick="@{() -> viewModel.deleteMovie(movie)}"
             android:text="@string/delete_movie"
             android:textAlignment="center"
             android:textColor="?attr/colorPrimary"
+            android:visibility="@{movie.internalId != null ? View.VISIBLE : View.GONE}"
             app:icon="@drawable/ic_delete"
             app:iconGravity="textStart"
             app:iconTint="?attr/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_move_to_favorite_movie"
-            app:layout_goneMarginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@+id/button_add_to_need_to_watch_movie"
             app:rippleColor="@color/mtrl_btn_text_btn_ripple_color" />
 
         <androidx.constraintlayout.widget.Group

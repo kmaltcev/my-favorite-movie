@@ -33,13 +33,6 @@ class MoviesModule {
             movieChangesRepository
         )
     }
-    val changeMoviePosterAction by lazy {
-        ChangeMoviePosterAction(moviesRepository)
-    }
-
-    val changeMovieNameAction by lazy {
-        ChangeMovieNameAction(moviesRepository)
-    }
 
     private val prepareMovieToAddAction by lazy {
         PrepareMovieToAddAction(prepareSeriesToAddAction)

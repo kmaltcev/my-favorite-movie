@@ -4,22 +4,21 @@
         android:id="@+id/favoriteMoviesFragment"
         android:enabled="true"
         android:icon="@drawable/ic_favorite"
-        android:title="" />
+        android:title="@string/favourite_movies" />
     <item
         android:id="@+id/needToWatchMoviesFragment"
         android:enabled="true"
         android:icon="@drawable/ic_tape"
-        android:title="" />
+        android:title="@string/need_to_watch_movies" />
     <item
         android:id="@+id/searchFragment"
         android:enabled="true"
         android:icon="@drawable/ic_search"
-        android:title="" />
+        android:title="@string/search_movie" />
     <item
         android:id="@+id/upcomingFragment"
         android:enabled="true"
         android:icon="@drawable/ic_edit"
-        android:title="" />
-
+        android:title="@string/upcoming_movie" />
 </menu>
 

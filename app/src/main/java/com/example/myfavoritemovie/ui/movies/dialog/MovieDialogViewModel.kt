@@ -4,41 +4,29 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.myfavoritemovie.domain.actions.movies.ChangeMovieNameAction
-import com.example.myfavoritemovie.domain.actions.movies.ChangeMoviePosterAction
+import com.example.myfavoritemovie.domain.actions.movies.AddFavoriteMovieAction
+import com.example.myfavoritemovie.domain.actions.movies.AddNeedToWatchMovieAction
 import com.example.myfavoritemovie.domain.actions.movies.DeleteMovieAction
 import com.example.myfavoritemovie.domain.actions.movies.MoveToFavoriteMoviesAction
-import com.example.myfavoritemovie.domain.actions.search.SearchNamesForMovieAction
-import com.example.myfavoritemovie.domain.actions.search.SearchPostersByMovieAction
-import com.example.myfavoritemovie.domain.entity.Image
 import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.ui.Event
 import kotlinx.coroutines.launch
 
 class MovieDialogViewModel(
     private val deleteMovieAction: DeleteMovieAction,
-    private val moveToFavoriteMoviesAction: MoveToFavoriteMoviesAction,
-    private val changeMoviePosterAction: ChangeMoviePosterAction,
-    private val searchPostersByMovieAction: SearchPostersByMovieAction,
-    private val searchNamesForMovieAction: SearchNamesForMovieAction,
-    private val changeMovieNameAction: ChangeMovieNameAction
+    private val addFavoriteMoviesAction: AddFavoriteMovieAction,
+    private val addNeedToWatchMovieAction: AddNeedToWatchMovieAction,
+    private val moveToFavoriteMoviesAction: MoveToFavoriteMoviesAction
 ) : ViewModel() {
 
     private val _selectedMovie = MutableLiveData<Movie>()
     val selectedMovie: LiveData<Movie> = _selectedMovie
-
-    private val _posters = MutableLiveData<Event<List<Image>>>()
-    val posters: LiveData<Event<List<Image>>> by lazy { _posters }
-
-    private val _names = MutableLiveData<Event<List<String>>>()
-    val names: LiveData<Event<List<String>>> = _names
 
     private val _closeDialog = MutableLiveData<Event<Boolean>>()
     val closeDialog: LiveData<Event<Boolean>> = _closeDialog
 
     fun selectMovie(movie: Movie) {
         _selectedMovie.value = movie
-//        _posters.value = null
     }
 
     fun deleteMovie(movie: Movie) = viewModelScope.launch {
@@ -46,21 +34,18 @@ class MovieDialogViewModel(
         _closeDialog.value = Event(true)
     }
 
-    fun moveToFavoriteMovies(movie: Movie) = viewModelScope.launch {
-        moveToFavoriteMoviesAction(movie)
+    fun addToFavoriteMovies(movie: Movie) = viewModelScope.launch {
+        addFavoriteMoviesAction(movie)
         _closeDialog.value = Event(true)
     }
 
-    fun searchPosters() = viewModelScope.launch {
-        selectedMovie.value?.let {
-            _posters.value = Event(searchPostersByMovieAction(it))
-        }
+    fun addToNeedToWatchMovies(movie: Movie) = viewModelScope.launch {
+        addNeedToWatchMovieAction(movie)
+        _closeDialog.value = Event(true)
     }
 
-    fun changeMoviePoster(poster: Image) = viewModelScope.launch {
-        _selectedMovie.value?.let {
-            changeMoviePosterAction(it, poster)
-            _closeDialog.value = Event(true)
-        }
+    fun moveToFavoriteMovies(movie: Movie) = viewModelScope.launch {
+        moveToFavoriteMoviesAction(movie)
+        _closeDialog.value = Event(true)
     }
 }

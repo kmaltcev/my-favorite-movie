@@ -26,10 +26,10 @@ class MoviesRepository(
     suspend fun updateFavoriteMovie(updatedMovie: Movie) {
         putMovieUse(updatedMovie, firebaseRealtimeDatabase::putFavoriteMovie)
     }
-
-    suspend fun updateNeedToWatchMovie(updatedMovie: Movie) {
-        putMovieUse(updatedMovie, firebaseRealtimeDatabase::putNeedToWatchMovie)
-    }
+//
+//    suspend fun updateNeedToWatchMovie(updatedMovie: Movie) {
+//        putMovieUse(updatedMovie, firebaseRealtimeDatabase::putNeedToWatchMovie)
+//    }
 
     private suspend fun putMovieUse(movie: Movie, putMovie: (FirebaseMovieDto) -> Unit) {
 
@@ -85,7 +85,7 @@ class MoviesRepository(
         deletePoster(movie)
     }
 
-    suspend fun deletePoster(movie: Movie) = withContext(Dispatchers.IO) {
+    private suspend fun deletePoster(movie: Movie) = withContext(Dispatchers.IO) {
         if (movie.poster is StorageReferenceImage) {
             movie.poster.reference.delete()
         }

@@ -1,6 +1,5 @@
 package com.example.myfavoritemovie.data.source.firebase.dto
 
-
 data class FirebaseMovieDto(
     var name: String = "",
     var originalName: String = "",

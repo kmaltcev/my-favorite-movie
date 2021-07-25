@@ -1,6 +1,5 @@
 package com.example.myfavoritemovie.data.source.tmdb
 
-import com.example.myfavoritemovie.data.source.tmdb.dto.PostersDto
 import com.example.myfavoritemovie.data.source.tmdb.dto.SearchResultDto
 import com.example.myfavoritemovie.data.source.tmdb.dto.TvDetailsResultDto
 import retrofit2.http.GET
@@ -20,26 +19,6 @@ interface TMDbApiService {
         @Query("language") language: String = "en",
         @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
     ): TvDetailsResultDto
-
-    @GET("movie/{id}/images")
-    suspend fun getPosters(
-        @Path("id") movieId: Int,
-        @Query("include_image_language") languages: String = "jp,ru,en",
-        @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
-    ): PostersDto
-
-    @GET("tv/{tv_id}/images")
-    suspend fun getTvPosters(
-        @Path("tv_id") tvId: Int,
-        @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
-    ): PostersDto
-
-    @GET("tv/{tv_id}/season/{season_number}/images")
-    suspend fun getSeasonPosters(
-        @Path("tv_id") tvId: Int,
-        @Path("season_number") seasonNumber: Int,
-        @Query("api_key") apiKey: String = TMDbApiKey.API_KEY
-    ): PostersDto
 
     @GET("movie/upcoming")
     suspend fun getUpcomingMovies(

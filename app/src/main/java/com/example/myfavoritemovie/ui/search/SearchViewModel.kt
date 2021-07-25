@@ -1,5 +1,7 @@
 package com.example.myfavoritemovie.ui.search
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -22,6 +24,7 @@ class SearchViewModel(
     private val _isSearching = MutableLiveData<Boolean>()
     val isSearching: LiveData<Boolean> = _isSearching
 
+    @RequiresApi(Build.VERSION_CODES.O)
     fun search(query: String) = viewModelScope.launch {
         _searchResults.value = null
         _isSearching.value = true

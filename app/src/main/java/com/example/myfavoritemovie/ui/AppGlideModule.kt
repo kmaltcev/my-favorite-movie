@@ -11,7 +11,6 @@ import java.io.InputStream
 
 @GlideModule
 class AppGlideModule : AppGlideModule() {
-
     override fun registerComponents(context: Context, glide: Glide, registry: Registry) {
         registry.append(
             StorageReference::class.java,

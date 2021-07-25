@@ -1,18 +1,24 @@
 package com.example.myfavoritemovie.ui.search
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.databinding.FragmentSearchBinding
+import com.example.myfavoritemovie.ui.EventObserver
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesAdapter
+import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog
+import com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel
 
 class SearchFragment : Fragment() {
 
@@ -20,7 +26,9 @@ class SearchFragment : Fragment() {
 
     private val viewModel by viewModels<SearchViewModel> { viewModelsFactory }
     private val movieViewModel by viewModels<MovieViewModel> { viewModelsFactory }
+    private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> { viewModelsFactory }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,14 +45,19 @@ class SearchFragment : Fragment() {
             listMovies.adapter = adapter
 
             viewModel.searchResults
-                .observe(viewLifecycleOwner) { movies ->
-                    adapter.submitList(movies)
+                .observe(viewLifecycleOwner) {
+                    adapter.submitList(it)
                 }
 
             val onSearch = {
                 val query: String = editSearch.text.toString()
                 viewModel.search(query)
             }
+
+            movieViewModel.openMovieDialog.observe(viewLifecycleOwner, EventObserver {
+                movieDialogViewModel.selectMovie(it)
+                MovieDialog().show(childFragmentManager, null)
+            })
 
             inputLayoutSearch.setEndIconOnClickListener {
                 onSearch()
