@@ -14,9 +14,7 @@ import com.example.myfavoritemovie.ui.EventObserver
 
 class MovieDialog : DialogFragment() {
     private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> {
-        ViewModelFactory(
-            requireContext()
-        )
+        ViewModelFactory(requireContext())
     }
 
     override fun onCreateView(

@@ -7,7 +7,6 @@ import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.os.IBinder
-import android.util.Log
 import androidx.navigation.NavDeepLinkBuilder
 import com.example.myfavoritemovie.R
 import com.example.myfavoritemovie.ui.MainActivity
@@ -17,18 +16,13 @@ class UpcomingMoviesReceiver : Service() {
         return null
     }
 
-
     override fun onCreate() {
-        Log.wtf("MY_APP_SERVICE", "The service has been created")
         val notification = createNotification()
         startForeground(1, notification)
         super.onCreate()
     }
 
-
     private fun createNotification(): Notification {
-
-
         val notificationChannelId = "UPCOMING_MOVIES_CHANNEL"
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
