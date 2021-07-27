@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.ui.movies.dialog
+package com.example.myfavoritemovie.ui.dialog
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

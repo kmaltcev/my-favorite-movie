@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.ui.movies.dialog
+package com.example.myfavoritemovie.ui.dialog
 
 import android.os.Bundle
 import android.transition.TransitionManager

@@ -6,5 +6,7 @@ fun <T> List<T>?.changeItem(oldItem: T, newItem: T): List<T>? {
         return this
     }
 
-    return this.toMutableList().also { it[index] = newItem }
+    return this.toMutableList().also {
+        it[index] = newItem
+    }
 }

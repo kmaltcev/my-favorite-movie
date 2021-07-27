@@ -15,8 +15,8 @@ import com.example.myfavoritemovie.databinding.FragmentSearchBinding
 import com.example.myfavoritemovie.ui.ext.EventObserver
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesAdapter
-import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog
-import com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel
+import com.example.myfavoritemovie.ui.dialog.MovieDialog
+import com.example.myfavoritemovie.ui.dialog.MovieDialogViewModel
 
 class SearchFragment : Fragment() {
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.myfavoritemovie.app.app
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
-import com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel
+import com.example.myfavoritemovie.ui.dialog.MovieDialogViewModel
 import com.example.myfavoritemovie.ui.search.SearchViewModel
 import com.example.myfavoritemovie.ui.upcoming.UpcomingViewModel
 

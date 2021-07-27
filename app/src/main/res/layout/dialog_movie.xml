@@ -10,7 +10,7 @@
             type="com.example.myfavoritemovie.domain.entity.Movie" />
         <variable
             name="viewModel"
-            type="com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel" />
+            type="com.example.myfavoritemovie.ui.dialog.MovieDialogViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

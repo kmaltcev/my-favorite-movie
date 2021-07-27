@@ -18,8 +18,8 @@ import com.example.myfavoritemovie.domain.entity.Movie
 import com.example.myfavoritemovie.ui.ext.EventObserver
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesFirebaseAdapter
-import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog
-import com.example.myfavoritemovie.ui.movies.dialog.MovieDialogViewModel
+import com.example.myfavoritemovie.ui.dialog.MovieDialog
+import com.example.myfavoritemovie.ui.dialog.MovieDialogViewModel
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.database.Query
 
