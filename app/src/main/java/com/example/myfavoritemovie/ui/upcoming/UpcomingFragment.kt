@@ -14,7 +14,7 @@ import com.example.myfavoritemovie.R
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.data.service.UpcomingMoviesReceiver
 import com.example.myfavoritemovie.databinding.FragmentUpcomingBinding
-import com.example.myfavoritemovie.ui.EventObserver
+import com.example.myfavoritemovie.ui.ext.EventObserver
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesAdapter
 import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog

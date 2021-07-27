@@ -15,7 +15,7 @@ import com.example.myfavoritemovie.data.converters.parseMovie
 import com.example.myfavoritemovie.data.source.firebase.FirebaseRealtimeDatabase
 import com.example.myfavoritemovie.databinding.FragmentMoviesBinding
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.ui.EventObserver
+import com.example.myfavoritemovie.ui.ext.EventObserver
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesFirebaseAdapter
 import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog

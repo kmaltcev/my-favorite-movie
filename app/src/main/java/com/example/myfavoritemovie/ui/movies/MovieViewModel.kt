@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.ui.Event
+import com.example.myfavoritemovie.ui.ext.Event
 
 class MovieViewModel : ViewModel() {
 

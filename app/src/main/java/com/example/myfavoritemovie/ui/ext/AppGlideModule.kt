@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.ui
+package com.example.myfavoritemovie.ui.ext
 
 import android.content.Context
 import com.bumptech.glide.Glide

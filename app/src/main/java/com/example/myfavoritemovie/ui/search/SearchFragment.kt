@@ -12,7 +12,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.databinding.FragmentSearchBinding
-import com.example.myfavoritemovie.ui.EventObserver
+import com.example.myfavoritemovie.ui.ext.EventObserver
 import com.example.myfavoritemovie.ui.movies.MovieViewModel
 import com.example.myfavoritemovie.ui.movies.MoviesAdapter
 import com.example.myfavoritemovie.ui.movies.dialog.MovieDialog

@@ -7,7 +7,7 @@ import com.example.myfavoritemovie.domain.actions.movies.GetChangedMovieAction
 import com.example.myfavoritemovie.domain.actions.search.SearchUpcomingAction
 import com.example.myfavoritemovie.domain.entity.ChangedMovie
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.ui.ChangesMovieViewModel
+import com.example.myfavoritemovie.ui.ext.ChangesMovieViewModel
 import com.example.myfavoritemovie.ui.ext.changeItem
 import kotlinx.coroutines.launch
 

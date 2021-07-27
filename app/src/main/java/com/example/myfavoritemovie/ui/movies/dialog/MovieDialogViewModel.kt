@@ -9,7 +9,7 @@ import com.example.myfavoritemovie.domain.actions.movies.AddNeedToWatchMovieActi
 import com.example.myfavoritemovie.domain.actions.movies.DeleteMovieAction
 import com.example.myfavoritemovie.domain.actions.movies.MoveToFavoriteMoviesAction
 import com.example.myfavoritemovie.domain.entity.Movie
-import com.example.myfavoritemovie.ui.Event
+import com.example.myfavoritemovie.ui.ext.Event
 import kotlinx.coroutines.launch
 
 class MovieDialogViewModel(

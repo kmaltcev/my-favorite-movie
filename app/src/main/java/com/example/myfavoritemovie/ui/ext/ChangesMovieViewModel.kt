@@ -1,4 +1,4 @@
-package com.example.myfavoritemovie.ui
+package com.example.myfavoritemovie.ui.ext
 
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel

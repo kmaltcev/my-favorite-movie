@@ -10,7 +10,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.observe
 import com.example.myfavoritemovie.app.dependency.ViewModelFactory
 import com.example.myfavoritemovie.databinding.DialogMovieBinding
-import com.example.myfavoritemovie.ui.EventObserver
+import com.example.myfavoritemovie.ui.ext.EventObserver
 
 class MovieDialog : DialogFragment() {
     private val movieDialogViewModel by activityViewModels<MovieDialogViewModel> {
