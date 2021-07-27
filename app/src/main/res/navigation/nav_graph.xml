@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/favoriteMoviesFragment">
-
     <fragment
         android:id="@+id/favoriteMoviesFragment"
         android:name="com.example.myfavoritemovie.ui.movies.added.FavoriteMoviesFragment"
