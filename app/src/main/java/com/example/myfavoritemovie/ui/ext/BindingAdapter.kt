@@ -8,7 +8,6 @@ import com.example.myfavoritemovie.domain.entity.Image
 
 @BindingAdapter("srcCompat")
 fun setImage(imageView: ImageView, image: Image?) {
-
     image?.let {
         Glide.with(imageView)
             .load(image.reference)

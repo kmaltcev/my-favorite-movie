@@ -52,7 +52,7 @@ class SearchRepository(
                 mediaTypeIsMovie(it.mediaType) ->
                     movies.add(it.toMovie())
                 mediaTypeIsTV(it.mediaType) ->
-                    movies.addAll(getMovieForTV(it))
+                    movies.addAll(getMovieForSerie(it))
             }
         }
 
@@ -80,7 +80,7 @@ class SearchRepository(
         return movies
     }
 
-    private suspend fun getMovieForTV(mediaTv: MediaDto): List<Movie> {
+    private suspend fun getMovieForSerie(mediaTv: MediaDto): List<Movie> {
         val series = mediaTv.toSeries()
         val seasons = withContext(Dispatchers.IO) {
             tmdbApiService.getTvDetails(mediaTv.id!!).seasons

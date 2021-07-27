@@ -61,7 +61,7 @@ class SearchFragment : Fragment() {
                 onSearch()
             }
             editSearch.setOnEditorActionListener { _, actionId, _ ->
-                return@setOnEditorActionListener when (actionId) {
+                when (actionId) {
                     EditorInfo.IME_ACTION_SEARCH -> {
                         onSearch()
                         true
