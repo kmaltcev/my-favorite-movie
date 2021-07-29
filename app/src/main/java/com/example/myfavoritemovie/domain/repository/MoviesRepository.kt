@@ -74,7 +74,6 @@ class MoviesRepository(
     }
 
 
-
     suspend fun deleteFavoriteMovie(movie: Movie) {
         firebaseRealtimeDatabase.removeFavoriteMovie(buildFirebaseMovieDto(movie))
         deletePoster(movie)
